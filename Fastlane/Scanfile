@@ -1,0 +1,19 @@
+# For more information about this configuration visit
+# https://github.com/fastlane/scan#scanfile
+
+project "MessengerApp.xcodeproj"
+scheme "MessengerApp"
+
+sdk "iphonesimulator"
+destination "platform=iOS Simulator,name=iPhone 16 Pro,OS=18.4"
+
+derived_data_path "DerivedData"
+
+code_coverage true
+result_bundle true
+prelaunch_simulator true
+
+xcargs "-parallelizeTargets -CLANG_ENABLE_CODE_COVERAGE=YES -GCC_GENERATE_TEST_COVERAGE_FILES=YES -GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES"
+
+output_types "xcresult"
+output_directory "test_output"

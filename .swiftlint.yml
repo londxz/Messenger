@@ -1,0 +1,18 @@
+included:
+  - MessengerApp
+  - MessengerAppTests
+  
+excluded:
+  - coverage
+  - test-reports
+  - MessengerAppTests/**/__Snapshots__
+
+disabled_rules:
+  - line_length
+  - trailing_whitespace
+
+opt_in_rules:
+  - empty_count
+  - explicit_init
+
+reporter: "xcode"

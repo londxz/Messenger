@@ -1,0 +1,8 @@
+--exclude Build
+--exclude DerivedData
+
+--indent 4
+--trimwhitespace always
+--wraparguments beforefirst
+--wrapcollections beforefirst
+--wrapparameters beforefirst

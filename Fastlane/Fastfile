@@ -1,0 +1,56 @@
+fastlane_version '2.228.0'
+default_platform :ios
+
+platform :ios do
+    lane :lint do
+        swiftlint(
+            mode: :lint,     
+            config_file: ".swiftlint.yml",     
+            raise_if_swiftlint_error: true,     
+            ignore_exit_status: false,
+            strict: true
+        )
+        swiftformat(
+        config: ".swiftformat" ,
+        lint: true
+        )              
+    end
+    
+    lane :tests do |options|
+      scan(
+        clean: options[:clean],
+        skip_package_dependencies_resolution: options[:skip_package_dependencies_resolution]
+      )
+    end
+
+    lane :coverage_extract do
+        project_root = File.expand_path("..", __dir__)
+        xcresult = Dir["#{project_root}/test_output/*.xcresult"].first
+
+        UI.user_error!("xcresult not found") unless xcresult
+
+        raw = sh("xcrun xccov view --report \"#{xcresult}\"")
+        line = raw.lines.find { |l| l.start_with?("MessengerApp.app") }
+
+        UI.user_error!("Coverage line not found") unless line
+
+        # Из строки формата:
+        # MessengerApp.app          92.33% (289/313)
+        coverage = line[/\d+\.\d+%/]
+        numbers  = line[/\(\d+\/\d+\)/]
+
+        output = <<~TEXT
+            📊 Test Coverage Summary
+            ──────────────────────────────
+
+            Target: MessengerApp.app
+            Coverage: #{coverage}
+            Lines Covered: #{numbers.gsub(/[()]/, "")}
+        TEXT
+
+        puts output
+
+        File.write("#{project_root}/coverage.txt", output)
+    end
+
+end

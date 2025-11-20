@@ -1,0 +1,117 @@
+name: Pull Request
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  pull-requests: write
+  contents: read
+
+env:
+  COVERAGE_THRESHOLD: 80
+
+jobs:
+  test:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.9.1
+        with:
+          access_token: ${{ github.token }}
+
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: '16.3.0'
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3.1'
+          bundler: '2.7.2'
+
+      - name: Install Gems
+        run: bundle install --jobs=4 --retry=3
+
+      - name: Swift Packages Cache
+        uses: actions/cache@v4
+        id: spm-cache
+        with:
+          path: |
+            DerivedData/SourcePackages
+            DerivedData/Build/Products
+          key: ${{ runner.os }}-spm-v1-${{ hashFiles('MessengerApp.xcodeproj/xcshareddata/swiftpm/Package.resolved') }}
+          restore-keys: ${{ runner.os }}-spm-v1-
+
+      - name: Install linters 
+        run: |
+          brew update
+          brew install swiftlint || true
+          brew install swiftformat || true
+
+      - name: Run Lint (fastlane)
+        run: bundle exec fastlane lint
+
+      - name: Run Tests (fastlane)
+        run: bundle exec fastlane tests
+
+      - name: Run extract coverage (fastlane)
+        run: bundle exec fastlane coverage_extract
+
+      - name: Check coverage threshold
+        run: |
+          COV=$(grep -o "[0-9]*\.[0-9]*%" coverage.txt | tr -d '%')
+          echo "$COV" > coverage_value.txt
+
+          echo "Threshold: ${COVERAGE_THRESHOLD}%  Current: ${COV}%" > coverage_status.txt
+
+          if (( $(echo "$COV < $COVERAGE_THRESHOLD" | bc -l) )); then
+            echo "Coverage is below ${COVERAGE_THRESHOLD}% (current: $COV%)" > coverage_warning.txt
+            echo "warn=true" >> $GITHUB_ENV
+          else
+            echo "" > coverage_warning.txt
+            echo "warn=false" >> $GITHUB_ENV
+          fi
+
+      - name: Post or update coverage comment
+        if: github.event_name == 'pull_request'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PR_NUMBER="${{ github.event.pull_request.number }}"
+          REPO="${{ github.repository }}"
+          COV_REPORT="$(cat coverage.txt)"
+          WARNING="$(cat coverage_warning.txt)"
+          STATUS_SECTION="$(cat coverage_status.txt)"
+
+          COMMENT_TAG="<!-- coverage-report-comment -->"
+
+          if [ "$WARNING" != "" ]; then
+            STATUS="⚠️ Coverage below threshold!"
+          else
+            STATUS="✅ Coverage threshold satisfied"
+          fi
+
+          FULL_BODY="$COMMENT_TAG
+
+          $STATUS
+
+          $STATUS_SECTION
+
+          $COV_REPORT
+          "
+
+              COMMENT_ID=$(gh api repos/$REPO/issues/$PR_NUMBER/comments \
+                --jq ".[] | select(.body | contains(\"$COMMENT_TAG\")) | .id")
+
+              if [ -n "$COMMENT_ID" ]; then
+                gh api repos/$REPO/issues/comments/$COMMENT_ID \
+                  -X PATCH \
+                  -f body="$FULL_BODY"
+              else
+                gh api repos/$REPO/issues/$PR_NUMBER/comments \
+                  -f body="$FULL_BODY"
+              fi
