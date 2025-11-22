@@ -9,6 +9,7 @@ import SwiftUI
 
 struct InboxView: View {
     @State private var showNewMessage = false
+    @State private var showProfile = false
 
     var body: some View {
         NavigationStack {
@@ -35,6 +36,7 @@ struct InboxView: View {
                         HStack(spacing: 0) {
                             Button {
                                 print("Profile clicked")
+                                showProfile.toggle()
                             } label: {
                                 Image(systemName: "person.crop.circle")
                                     .resizable()
@@ -59,6 +61,9 @@ struct InboxView: View {
                         }
                     }
                 }
+            }
+            .navigationDestination(isPresented: $showProfile) {
+                ProfileView()
             }
         }
     }
