@@ -6,15 +6,27 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct ProfileView: View {
+    @StateObject private var viewModel = ProfileViewModel()
+    
     var body: some View {
         NavigationStack {
             VStack {
-                Image(systemName: "person.circle.fill")
-                    .resizable()
-                    .frame(width: 80, height: 80)
-                    .foregroundStyle(Color(.systemGray4))
+                PhotosPicker(selection: $viewModel.selectedImage) {
+                    if let profileImage = viewModel.profileImage {
+                        profileImage
+                            .resizable()
+                            .frame(width: 80, height: 80)
+                            .clipShape(Circle())
+                    } else {
+                        Image(systemName: "person.circle.fill")
+                            .resizable()
+                            .frame(width: 80, height: 80)
+                            .foregroundStyle(Color(.systemGray4))
+                    }
+                }
 
                 Text("Bruce Wayne")
                     .font(.title2)
