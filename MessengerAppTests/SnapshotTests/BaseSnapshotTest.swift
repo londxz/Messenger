@@ -5,13 +5,13 @@
 //  Created by Родион Холодов on 21.11.2025.
 //
 
-import SwiftUI
 import SnapshotTesting
+import SwiftUI
 import XCTest
 
 class BaseSnapshotTest<Content: View>: XCTestCase {
     let isRecord: SnapshotTestingConfiguration.Record = false
-    
+
     func makeVC(
         content: () -> Content,
         style: UIUserInterfaceStyle = .light,
@@ -34,7 +34,7 @@ class BaseSnapshotTest<Content: View>: XCTestCase {
 
         return sut
     }
-    
+
     func verifySnapshot(
         content: @escaping () -> Content,
         style: UIUserInterfaceStyle = .light,
@@ -64,7 +64,7 @@ class BaseSnapshotTest<Content: View>: XCTestCase {
                     of: sut,
                     as: .image(on: device),
                     file: file,
-                    testName: testName 
+                    testName: testName
                 )
             }
         }

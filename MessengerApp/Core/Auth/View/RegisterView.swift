@@ -12,7 +12,7 @@ struct RegisterView: View {
     @State private var emailText = ""
     @State private var fullnameText = ""
     @State private var passwordText = ""
-    
+
     var body: some View {
         ViewThatFits(in: .vertical) {
             registerView
@@ -22,9 +22,9 @@ struct RegisterView: View {
         .navigationBarBackButtonHidden()
         .ignoresSafeArea(.keyboard, edges: .bottom)
     }
-    
+
     @ViewBuilder
-    private var registerView : some View {
+    private var registerView: some View {
         VStack(spacing: 16) {
             Spacer()
             Image(.profileIcon)
@@ -33,7 +33,7 @@ struct RegisterView: View {
                 .frame(width: 150, height: 150)
                 .padding(.bottom)
                 .accessibilityHidden(true)
-            
+
             VStack {
                 TextField("Enter your email", text: $emailText)
                     .font(.subheadline)
@@ -52,7 +52,7 @@ struct RegisterView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 10))
             }
             .padding(.bottom, 8)
-            
+
             Button {
                 print("Sign Up")
             } label: {
@@ -64,7 +64,7 @@ struct RegisterView: View {
                     .background(Color.blue)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
             }
-            
+
             Spacer()
 
             Divider()

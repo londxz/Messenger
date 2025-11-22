@@ -11,7 +11,6 @@ import SwiftUI
 import XCTest
 
 final class RegisterViewSnapshotTests: BaseSnapshotTest<RegisterView> {
-    
     // MARK: - Device Tests
 
     func test_iPhone16Pro_Light() {
