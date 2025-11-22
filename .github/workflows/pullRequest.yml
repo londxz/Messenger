@@ -43,8 +43,9 @@ jobs:
           path: |
             DerivedData/SourcePackages
             DerivedData/Build/Products
-          key: ${{ runner.os }}-spm-v1-${{ hashFiles('MessengerApp.xcodeproj/xcshareddata/swiftpm/Package.resolved') }}
-          restore-keys: ${{ runner.os }}-spm-v1-
+          key: ${{ runner.os }}-spm-v1
+          restore-keys: |
+            ${{ runner.os }}-spm-v1
 
       - name: Install linters 
         run: |
