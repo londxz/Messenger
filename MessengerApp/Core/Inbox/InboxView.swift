@@ -22,7 +22,7 @@ struct InboxView: View {
                             }
                         }
                         .listStyle(PlainListStyle())
-                        .frame(height: geo.size.height - 100)
+                        .frame(height: max(0, geo.size.height - 100))
                     }
                 }
                 .toolbar {
