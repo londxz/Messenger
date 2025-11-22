@@ -36,6 +36,11 @@ jobs:
       - name: Install Gems
         run: bundle install --jobs=4 --retry=3
 
+      - name: Resolve Swift Packages
+        run: |
+          xcodebuild -resolvePackageDependencies \
+            -project MessengerApp.xcodeproj
+
       - name: Swift Packages Cache
         uses: actions/cache@v4
         id: spm-cache
@@ -43,8 +48,9 @@ jobs:
           path: |
             DerivedData/SourcePackages
             DerivedData/Build/Products
-        key: ${{ runner.os }}-spm-v1-${{ hashFiles('Package.resolved') }}
-          restore-keys: ${{ runner.os }}-spm-v1-
+          key: ${{ runner.os }}-spm-v1-${{ hashFiles('Package.resolved') }}
+          restore-keys: |
+            ${{ runner.os }}-spm-v1-
 
       - name: Install linters 
         run: |
