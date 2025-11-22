@@ -10,7 +10,7 @@ import SwiftUI
 struct NewMessageView: View {
     @Environment(\.dismiss) var dismiss
     @State private var searchText = ""
-    
+
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -20,14 +20,14 @@ struct NewMessageView: View {
                     .background(Color(.systemGroupedBackground))
                     .clipShape(RoundedRectangle(cornerRadius: 8))
                     .padding(.horizontal)
-                
+
                 Text("CONTACTS")
                     .font(.footnote)
                     .foregroundStyle(.gray)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding()
-            
-                ForEach(0...10, id: \.self) { _ in
+
+                ForEach(0 ... 10, id: \.self) { _ in
                     HStack {
                         Image(systemName: "person.circle.fill")
                             .resizable()
@@ -36,11 +36,11 @@ struct NewMessageView: View {
                         Text("Bruce Wayne")
                             .font(.subheadline)
                             .fontWeight(.semibold)
-                        
+
                         Spacer()
                     }
                     .padding(.leading)
-                    
+
                     Divider()
                         .padding(.leading, 64)
                 }

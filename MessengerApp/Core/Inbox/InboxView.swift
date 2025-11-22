@@ -9,7 +9,7 @@ import SwiftUI
 
 struct InboxView: View {
     @State private var showNewMessage = false
-    
+
     var body: some View {
         NavigationStack {
             GeometryReader { geo in
