@@ -5,12 +5,12 @@
 //  Created by Родион Холодов on 22.11.2025.
 //
 
-import SwiftUI
 import PhotosUI
+import SwiftUI
 
 struct ProfileView: View {
     @StateObject private var viewModel = ProfileViewModel()
-    
+
     var body: some View {
         NavigationStack {
             VStack {
