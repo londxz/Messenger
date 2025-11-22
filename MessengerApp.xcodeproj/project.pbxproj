@@ -21,6 +21,7 @@
 		3CC2D2922ED1C7B3005327B9 /* InboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC2D2912ED1C7B3005327B9 /* InboxView.swift */; };
 		3CC2D2952ED1C99E005327B9 /* ActiveUsersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC2D2942ED1C99E005327B9 /* ActiveUsersView.swift */; };
 		3CC2D2972ED1CD7B005327B9 /* InboxRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC2D2962ED1CD7B005327B9 /* InboxRowView.swift */; };
+		3CEAEDB82ED1DFC9001F46D0 /* NewMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEAEDB72ED1DFC9001F46D0 /* NewMessageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		3CC2D2912ED1C7B3005327B9 /* InboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxView.swift; sourceTree = "<group>"; };
 		3CC2D2942ED1C99E005327B9 /* ActiveUsersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveUsersView.swift; sourceTree = "<group>"; };
 		3CC2D2962ED1CD7B005327B9 /* InboxRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxRowView.swift; sourceTree = "<group>"; };
+		3CEAEDB72ED1DFC9001F46D0 /* NewMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 			children = (
 				3C2F0A062EC861360064FEA4 /* Auth */,
 				3CC2D2902ED1C79A005327B9 /* Inbox */,
+				3CEAEDB62ED1DFB5001F46D0 /* NewMessageView */,
 				3C2F0A052EC861300064FEA4 /* Root */,
 			);
 			path = Core;
@@ -235,6 +238,14 @@
 			path = ActiveUsers;
 			sourceTree = "<group>";
 		};
+		3CEAEDB62ED1DFB5001F46D0 /* NewMessageView */ = {
+			isa = PBXGroup;
+			children = (
+				3CEAEDB72ED1DFC9001F46D0 /* NewMessageView.swift */,
+			);
+			path = NewMessageView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -344,6 +355,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3CC2D2972ED1CD7B005327B9 /* InboxRowView.swift in Sources */,
+				3CEAEDB82ED1DFC9001F46D0 /* NewMessageView.swift in Sources */,
 				3C2F0A092EC861870064FEA4 /* LoginView.swift in Sources */,
 				3C60B6BE2ECF861F0096FF27 /* RegisterView.swift in Sources */,
 				3CC2D2922ED1C7B3005327B9 /* InboxView.swift in Sources */,
