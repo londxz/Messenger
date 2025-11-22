@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct InboxView: View {
+    @State private var showNewMessage = false
+
     var body: some View {
         NavigationStack {
             GeometryReader { geo in
@@ -24,6 +26,9 @@ struct InboxView: View {
                         .listStyle(PlainListStyle())
                         .frame(height: max(0, geo.size.height - 100))
                     }
+                }
+                .fullScreenCover(isPresented: $showNewMessage) {
+                    NewMessageView()
                 }
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading) {
@@ -45,7 +50,7 @@ struct InboxView: View {
 
                     ToolbarItem(placement: .topBarTrailing) {
                         Button {
-                            print("new message clicked")
+                            showNewMessage.toggle()
                         } label: {
                             Image(systemName: "square.and.pencil.circle.fill")
                                 .resizable()
