@@ -14,6 +14,10 @@
 		3C2F0A092EC861870064FEA4 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2F0A082EC861870064FEA4 /* LoginView.swift */; };
 		3C2F0A0B2EC87E4B0064FEA4 /* LoginViewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2F0A0A2EC87E4B0064FEA4 /* LoginViewSnapshotTests.swift */; };
 		3C3339272EC9BA66000355F2 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 3C3339262EC9BA66000355F2 /* SnapshotTesting */; };
+		3C60B6BE2ECF861F0096FF27 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C60B6BD2ECF861B0096FF27 /* RegisterView.swift */; };
+		3CC2D28B2ED0E6CE005327B9 /* RegisterViewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC2D28A2ED0E6CE005327B9 /* RegisterViewSnapshotTests.swift */; };
+		3CC2D28D2ED0E911005327B9 /* BaseSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC2D28C2ED0E909005327B9 /* BaseSnapshotTest.swift */; };
+		3CC2D28F2ED1B57E005327B9 /* ViewImageConfigExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC2D28E2ED1B578005327B9 /* ViewImageConfigExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +39,10 @@
 		3C2F09F82EC860D60064FEA4 /* MessengerAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessengerAppTests.swift; sourceTree = "<group>"; };
 		3C2F0A082EC861870064FEA4 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		3C2F0A0A2EC87E4B0064FEA4 /* LoginViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewSnapshotTests.swift; sourceTree = "<group>"; };
+		3C60B6BD2ECF861B0096FF27 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		3CC2D28A2ED0E6CE005327B9 /* RegisterViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewSnapshotTests.swift; sourceTree = "<group>"; };
+		3CC2D28C2ED0E909005327B9 /* BaseSnapshotTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSnapshotTest.swift; sourceTree = "<group>"; };
+		3CC2D28E2ED1B578005327B9 /* ViewImageConfigExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewImageConfigExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				3C2F0A082EC861870064FEA4 /* LoginView.swift */,
+				3C60B6BD2ECF861B0096FF27 /* RegisterView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -177,9 +186,28 @@
 		3C780F722EC88857007F165E /* SnapshotTests */ = {
 			isa = PBXGroup;
 			children = (
-				3C2F0A0A2EC87E4B0064FEA4 /* LoginViewSnapshotTests.swift */,
+				3CC2D28E2ED1B578005327B9 /* ViewImageConfigExtension.swift */,
+				3CC2D28C2ED0E909005327B9 /* BaseSnapshotTest.swift */,
+				3CC2D2872ED0E69F005327B9 /* Auth */,
 			);
 			path = SnapshotTests;
+			sourceTree = "<group>";
+		};
+		3CC2D2872ED0E69F005327B9 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				3CC2D2882ED0E6A5005327B9 /* View */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		3CC2D2882ED0E6A5005327B9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3C2F0A0A2EC87E4B0064FEA4 /* LoginViewSnapshotTests.swift */,
+				3CC2D28A2ED0E6CE005327B9 /* RegisterViewSnapshotTests.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -291,6 +319,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C2F0A092EC861870064FEA4 /* LoginView.swift in Sources */,
+				3C60B6BE2ECF861F0096FF27 /* RegisterView.swift in Sources */,
 				3C2F09F62EC860D30064FEA4 /* ContentView.swift in Sources */,
 				3C2F09F72EC860D30064FEA4 /* MessengerAppApp.swift in Sources */,
 			);
@@ -300,6 +329,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CC2D28F2ED1B57E005327B9 /* ViewImageConfigExtension.swift in Sources */,
+				3CC2D28D2ED0E911005327B9 /* BaseSnapshotTest.swift in Sources */,
+				3CC2D28B2ED0E6CE005327B9 /* RegisterViewSnapshotTests.swift in Sources */,
 				3C2F0A0B2EC87E4B0064FEA4 /* LoginViewSnapshotTests.swift in Sources */,
 				3C2F09FA2EC860D60064FEA4 /* MessengerAppTests.swift in Sources */,
 			);

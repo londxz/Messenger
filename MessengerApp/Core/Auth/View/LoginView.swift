@@ -18,6 +18,7 @@ struct LoginView: View {
                 ScrollView { loginView }
             }
             .padding(.horizontal, 28)
+            .ignoresSafeArea(.keyboard, edges: .bottom)
         }
     }
 
@@ -38,7 +39,7 @@ struct LoginView: View {
                     .padding(12)
                     .background(Color(.systemGray6))
                     .clipShape(RoundedRectangle(cornerRadius: 10))
-                TextField("Enter your password", text: $passwordText)
+                SecureField("Enter your password", text: $passwordText)
                     .font(.subheadline)
                     .padding(12)
                     .background(Color(.systemGray6))
@@ -100,7 +101,7 @@ struct LoginView: View {
             Divider()
 
             NavigationLink {
-                Text("Sign Up")
+                RegisterView()
             } label: {
                 HStack {
                     Text("Don't have an account?")
