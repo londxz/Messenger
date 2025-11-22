@@ -13,7 +13,7 @@ enum SettingViewModel: Int, CaseIterable, Identifiable {
     case accessibility
     case privacy
     case notifications
-    
+
     var title: String {
         switch self {
         case .darkMode: return "Dark mode"
@@ -23,7 +23,7 @@ enum SettingViewModel: Int, CaseIterable, Identifiable {
         case .notifications: return "Notifications"
         }
     }
-    
+
     var imageName: String {
         switch self {
         case .darkMode: return "moon.circle.fill"
@@ -33,7 +33,7 @@ enum SettingViewModel: Int, CaseIterable, Identifiable {
         case .notifications: return "bell.circle.fill"
         }
     }
-    
+
     var imageColor: Color {
         switch self {
         case .darkMode: return .black
@@ -43,6 +43,6 @@ enum SettingViewModel: Int, CaseIterable, Identifiable {
         case .notifications: return .pink
         }
     }
-    
+
     var id: Int { rawValue }
 }
