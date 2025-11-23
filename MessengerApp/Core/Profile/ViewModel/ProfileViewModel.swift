@@ -9,20 +9,33 @@ import PhotosUI
 import SwiftUI
 
 class ProfileViewModel: ObservableObject {
-    @Published var profileImage: Image?
+    var loader: ImageLoader?
 
+    @Published var profileImage: Image?
     @Published var selectedImage: PhotosPickerItem? {
         didSet {
-            Task {
-                try await loadProfileImage()
-            }
+            loader = selectedImage
+            updateProfileImage()
         }
     }
 
     func loadProfileImage() async throws {
-        guard let item = selectedImage else { return }
-        guard let imageData = try await item.loadTransferable(type: Data.self) else { return }
-        guard let uiImage = UIImage(data: imageData) else { return }
+        guard
+            let imageData = try await loader?.loadImageData(),
+            let uiImage = UIImage(data: imageData)
+        else { return }
+
+        await setProfileImage(uiImage: uiImage)
+    }
+
+    private func updateProfileImage() {
+        Task {
+            try await loadProfileImage()
+        }
+    }
+
+    @MainActor
+    private func setProfileImage(uiImage: UIImage) {
         profileImage = Image(uiImage: uiImage)
     }
 }
