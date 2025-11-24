@@ -10,7 +10,7 @@ import SwiftUI
 struct ProfileImageView: View {
     let userModel: UserModel
     let size: ProfileImageSize
-    
+
     var body: some View {
         if let profileImage = userModel.profileImageUrl {
             Image(profileImage)
