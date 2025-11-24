@@ -17,10 +17,7 @@ struct ActiveUsersView: View {
                             Button {
                                 print("user clicked")
                             } label: {
-                                Image(systemName: "person.circle.fill")
-                                    .resizable()
-                                    .frame(width: 64, height: 64)
-                                    .foregroundStyle(Color(.systemGray4))
+                                ProfileImageView(userModel: UserModel.mockUser, size: .large)
                             }
 
                             ZStack {

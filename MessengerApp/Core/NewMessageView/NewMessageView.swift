@@ -29,10 +29,7 @@ struct NewMessageView: View {
 
                 ForEach(0 ... 10, id: \.self) { _ in
                     HStack {
-                        Image(systemName: "person.circle.fill")
-                            .resizable()
-                            .frame(width: 40, height: 40)
-                            .foregroundStyle(Color(.systemGray4))
+                        ProfileImageView(userModel: UserModel.mockUser, size: .small)
                         Text("Bruce Wayne")
                             .font(.subheadline)
                             .fontWeight(.semibold)

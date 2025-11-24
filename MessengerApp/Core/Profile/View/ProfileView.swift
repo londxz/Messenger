@@ -19,18 +19,26 @@ struct ProfileView: View {
     var body: some View {
         VStack {
             PhotosPicker(selection: $viewModel.selectedImage) {
-                if let profileImage = viewModel.profileImage {
-                    profileImage
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 80, height: 80)
-                        .clipShape(Circle())
-                } else {
-                    Image(userModel.profileImageUrl ?? "")
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 80, height: 80)
-                        .clipShape(Circle())
+                ZStack(alignment: .bottomTrailing) {
+                    if let profileImage = viewModel.profileImage {
+                        profileImage
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 80, height: 80)
+                            .clipShape(Circle())
+                    } else {
+                        ProfileImageView(userModel: userModel, size: .xLarge)
+                    }
+                    ZStack {
+                        Circle()
+                            .frame(width: 20, height: 20)
+                            .foregroundStyle(Color(.systemGray6))
+                        Image(systemName: "camera.fill")
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 8, height: 8)
+                            .foregroundStyle(.black)
+                    }
                 }
             }
 
