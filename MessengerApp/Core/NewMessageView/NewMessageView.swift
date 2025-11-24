@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct NewMessageView: View {
-    @Environment(\.dismiss) var dismiss
+    @EnvironmentObject private var coordinator: Coordinator
     @State private var searchText = ""
 
     var body: some View {
@@ -51,9 +51,8 @@ struct NewMessageView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button("Cancel") {
-                        dismiss()
+                        coordinator.closeFullScreen()
                     }
-                    .foregroundStyle(.black)
                 }
             }
         }

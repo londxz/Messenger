@@ -9,9 +9,20 @@ import SwiftUI
 
 @main
 struct MessengerAppApp: App {
+    @StateObject private var router: Router
+    @StateObject private var coordinator: Coordinator
+
+    init() {
+        let router = Router()
+        _router = StateObject(wrappedValue: router)
+        _coordinator = StateObject(wrappedValue: Coordinator(router: router))
+    }
+
     var body: some Scene {
         WindowGroup {
-            InboxView()
+            RootView()
+                .environmentObject(router)
+                .environmentObject(coordinator)
         }
     }
 }
