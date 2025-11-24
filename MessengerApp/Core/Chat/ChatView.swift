@@ -9,29 +9,39 @@ import SwiftUI
 
 struct ChatView: View {
     @State private var messageText = ""
-    
+
     var body: some View {
         VStack {
-            ScrollView {
-                VStack {
-                    ProfileImageView(userModel: UserModel.mockUser, size: .xLarge)
-                    
-                    VStack(spacing: 4) {
-                        Text("Bruce Wayne")
-                            .font(.title3)
-                            .fontWeight(.semibold)
-                        
-                        Text("Messenger")
-                            .font(.footnote)
-                            .foregroundStyle(.gray)
+            GeometryReader { geo in
+                ScrollView {
+                    VStack {
+                        ProfileImageView(userModel: UserModel.mockUser, size: .xLarge)
+
+                        VStack(spacing: 4) {
+                            Text("Bruce Wayne")
+                                .font(.title3)
+                                .fontWeight(.semibold)
+
+                            Text("Messenger")
+                                .font(.footnote)
+                                .foregroundStyle(.gray)
+                        }
+                    }
+
+                    ForEach(0 ... 15, id: \.self) { _ in
+                        ChatMessageCell(
+                            isFromCurrentUser: Bool.random(),
+                            contentWidth: geo.size.width
+                        )
                     }
                 }
             }
+
             HStack(alignment: .bottom, spacing: 0) {
                 TextField("Send message...", text: $messageText, axis: .vertical)
                     .padding()
                     .textInputAutocapitalization(.none)
-                
+
                 Button {
                     print("send message")
                 } label: {
