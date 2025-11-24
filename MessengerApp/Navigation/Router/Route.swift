@@ -5,7 +5,6 @@
 //  Created by Родион Холодов on 24.11.2025.
 //
 
-
 import Foundation
 
 enum Route: Hashable {
@@ -14,6 +13,6 @@ enum Route: Hashable {
 
 enum FullScreenRoute: Identifiable {
     case newMessage
-    
+
     var id: String { UUID().uuidString }
 }

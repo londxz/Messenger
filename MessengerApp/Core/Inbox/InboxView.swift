@@ -9,7 +9,7 @@ import SwiftUI
 
 struct InboxView: View {
     @EnvironmentObject private var coordinator: Coordinator
-    @State private var userModel = UserModel.MOCK_USER
+    @State private var userModel = UserModel.mockUser
 
     var body: some View {
         GeometryReader { geo in
@@ -30,7 +30,6 @@ struct InboxView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     HStack(spacing: 0) {
-                        
                         Button {
                             coordinator.showProfile(userModel: userModel)
                         } label: {
@@ -40,7 +39,6 @@ struct InboxView: View {
                                 .frame(width: 28, height: 28)
                                 .clipShape(Circle())
                         }
-
 
                         Text("Chat")
                             .font(.title)

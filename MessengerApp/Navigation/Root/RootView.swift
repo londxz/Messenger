@@ -10,13 +10,13 @@ import SwiftUI
 struct RootView: View {
     @EnvironmentObject var router: Router
     @EnvironmentObject var coordinator: Coordinator
-    
+
     var body: some View {
         NavigationStack(path: $router.path) {
             InboxView()
                 .navigationDestination(for: Route.self) { route in
                     switch route {
-                    case .profile(let userModel):
+                    case let .profile(userModel):
                         ProfileView(userModel: userModel)
                     }
                 }

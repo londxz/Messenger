@@ -11,7 +11,7 @@ import SwiftUI
 struct ProfileView: View {
     @StateObject private var viewModel = ProfileViewModel()
     private let userModel: UserModel
-    
+
     init(userModel: UserModel) {
         self.userModel = userModel
     }
@@ -66,6 +66,6 @@ struct ProfileView: View {
 
 #Preview {
     NavigationStack {
-        ProfileView(userModel: UserModel.MOCK_USER)
+        ProfileView(userModel: UserModel.mockUser)
     }
 }

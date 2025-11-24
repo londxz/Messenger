@@ -15,5 +15,5 @@ struct UserModel: Identifiable, Hashable, Codable {
 }
 
 extension UserModel {
-    static let MOCK_USER = UserModel(fullname: "Batman", email: "batman@gmail.com", profileImageUrl: "batman")
+    static let mockUser = UserModel(fullname: "Batman", email: "batman@gmail.com", profileImageUrl: "batman")
 }

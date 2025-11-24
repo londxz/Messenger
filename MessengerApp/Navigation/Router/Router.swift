@@ -10,20 +10,20 @@ import Foundation
 final class Router: ObservableObject {
     @Published var path: [Route] = []
     @Published var fullScreenRoute: FullScreenRoute?
-    
+
     func push(_ route: Route) {
         path.append(route)
     }
-    
+
     func presentFullScreen(_ route: FullScreenRoute) {
         fullScreenRoute = route
     }
-    
+
     func pop() {
         guard !path.isEmpty else { return }
         _ = path.popLast()
     }
-    
+
     func dismissFullScreen() {
         fullScreenRoute = nil
     }
