@@ -33,11 +33,7 @@ struct InboxView: View {
                         Button {
                             coordinator.showProfile(userModel: userModel)
                         } label: {
-                            Image(userModel.profileImageUrl ?? "")
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 28, height: 28)
-                                .clipShape(Circle())
+                            ProfileImageView(userModel: UserModel.mockUser, size: .xSmall)
                         }
 
                         Text("Chat")
