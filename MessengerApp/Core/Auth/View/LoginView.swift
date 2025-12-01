@@ -56,7 +56,7 @@ struct LoginView: View {
             }
 
             Button {
-                viewModel.loginUser()
+                Task { try await viewModel.loginUser() }
             } label: {
                 Text("Login")
                     .font(.headline)

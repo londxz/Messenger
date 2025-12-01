@@ -28,7 +28,9 @@ struct AppFlowRootView: View {
     
     var body: some View {
         Group {
-            switch appCoordinator.appRoute {
+            switch appCoordinator.appState {
+            case .loading:
+                ProgressView()
             case .authFlow:
                 AuthFlowRootView()
                     .environmentObject(authRouter)
@@ -37,8 +39,12 @@ struct AppFlowRootView: View {
                 MainFlowRootView()
                     .environmentObject(mainRouter)
                     .environmentObject(mainCoordinator)
+                    .onAppear {
+                        mainCoordinator.reset()
+                    }
             }
         }
+        .animation(.easeInOut, value: appCoordinator.appState)
     }
 }
 

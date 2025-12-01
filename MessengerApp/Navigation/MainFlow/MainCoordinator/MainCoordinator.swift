@@ -29,4 +29,8 @@ final class MainCoordinator: ObservableObject {
     func closeFullScreen() {
         router.dismissFullScreen()
     }
+    
+    func reset() {
+        router.reset()
+    }
 }

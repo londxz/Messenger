@@ -27,4 +27,9 @@ final class MainRouter: ObservableObject {
     func dismissFullScreen() {
         fullScreenRoute = nil
     }
+    
+    func reset() {
+        path = []
+        fullScreenRoute = nil
+    }
 }
