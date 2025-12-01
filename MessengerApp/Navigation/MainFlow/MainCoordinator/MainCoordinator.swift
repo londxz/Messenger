@@ -7,10 +7,10 @@
 
 import Foundation
 
-final class Coordinator: ObservableObject {
-    let router: Router
+final class MainCoordinator: ObservableObject {
+    let router: MainRouter
 
-    init(router: Router) {
+    init(router: MainRouter) {
         self.router = router
     }
 

@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Route: Hashable {
+enum MainRoute: Hashable {
     case profile(UserModel)
 }
 

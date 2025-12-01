@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RegisterView: View {
-    @Environment(\.dismiss) var dismiss
+    @EnvironmentObject private var authCoordinator: AuthCoordinator
     @StateObject private var viewModel = RegisterViewModel()
 
     var body: some View {
@@ -68,7 +68,7 @@ struct RegisterView: View {
             Divider()
 
             Button {
-                dismiss()
+                authCoordinator.goBack()
             } label: {
                 HStack {
                     Text("Already registered?")

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct InboxView: View {
-    @EnvironmentObject private var coordinator: Coordinator
+    @EnvironmentObject private var mainCoordinator: MainCoordinator
     @State private var userModel = UserModel.mockUser
 
     var body: some View {
@@ -31,7 +31,7 @@ struct InboxView: View {
                 ToolbarItem(placement: .topBarLeading) {
                     HStack(spacing: 0) {
                         Button {
-                            coordinator.showProfile(userModel: userModel)
+                            mainCoordinator.showProfile(userModel: userModel)
                         } label: {
                             ProfileImageView(userModel: UserModel.mockUser, size: .xSmall)
                         }
@@ -44,7 +44,7 @@ struct InboxView: View {
 
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
-                        coordinator.showNewMessage()
+                        mainCoordinator.showNewMessage()
                     } label: {
                         Image(systemName: "square.and.pencil.circle.fill")
                             .resizable()

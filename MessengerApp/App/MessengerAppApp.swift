@@ -19,22 +19,10 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct MessengerAppApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    
-    @StateObject private var router: Router
-    @StateObject private var coordinator: Coordinator
-
-    init() {
-        let router = Router()
-        _router = StateObject(wrappedValue: router)
-        _coordinator = StateObject(wrappedValue: Coordinator(router: router))
-    }
 
     var body: some Scene {
         WindowGroup {
-//            RootView()
-//                .environmentObject(router)
-//                .environmentObject(coordinator)
-            LoginView()
+            AppFlowRootView()
         }
     }
 }

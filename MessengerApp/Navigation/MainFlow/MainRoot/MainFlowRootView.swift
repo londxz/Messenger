@@ -7,20 +7,19 @@
 
 import SwiftUI
 
-struct RootView: View {
-    @EnvironmentObject var router: Router
-    @EnvironmentObject var coordinator: Coordinator
+struct MainFlowRootView: View {
+    @EnvironmentObject var mainRouter: MainRouter
 
     var body: some View {
-        NavigationStack(path: $router.path) {
+        NavigationStack(path: $mainRouter.path) {
             InboxView()
-                .navigationDestination(for: Route.self) { route in
+                .navigationDestination(for: MainRoute.self) { route in
                     switch route {
                     case let .profile(userModel):
                         ProfileView(userModel: userModel)
                     }
                 }
-                .fullScreenCover(item: $router.fullScreenRoute) { route in
+                .fullScreenCover(item: $mainRouter.fullScreenRoute) { route in
                     switch route {
                     case .newMessage:
                         NewMessageView()

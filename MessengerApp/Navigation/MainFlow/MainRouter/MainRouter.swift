@@ -7,11 +7,11 @@
 
 import Foundation
 
-final class Router: ObservableObject {
-    @Published var path: [Route] = []
+final class MainRouter: ObservableObject {
+    @Published var path: [MainRoute] = []
     @Published var fullScreenRoute: FullScreenRoute?
 
-    func push(_ route: Route) {
+    func push(_ route: MainRoute) {
         path.append(route)
     }
 

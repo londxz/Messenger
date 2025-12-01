@@ -8,17 +8,16 @@
 import SwiftUI
 
 struct LoginView: View {
+    @EnvironmentObject private var authCoordinator: AuthCoordinator
     @StateObject private var viewModel = LoginViewModel()
 
     var body: some View {
-        NavigationStack {
-            ViewThatFits(in: .vertical) {
-                loginView
-                ScrollView { loginView }
-            }
-            .padding(.horizontal, 28)
-            .ignoresSafeArea(.keyboard, edges: .bottom)
+        ViewThatFits(in: .vertical) {
+            loginView
+            ScrollView { loginView }
         }
+        .padding(.horizontal, 28)
+        .ignoresSafeArea(.keyboard, edges: .bottom)
     }
 
     @ViewBuilder
@@ -99,8 +98,8 @@ struct LoginView: View {
 
             Divider()
 
-            NavigationLink {
-                RegisterView()
+            Button {
+                authCoordinator.pushRegisterationView()
             } label: {
                 HStack {
                     Text("Don't have an account?")
