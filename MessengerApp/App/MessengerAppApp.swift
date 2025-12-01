@@ -31,9 +31,10 @@ struct MessengerAppApp: App {
 
     var body: some Scene {
         WindowGroup {
-            RootView()
-                .environmentObject(router)
-                .environmentObject(coordinator)
+//            RootView()
+//                .environmentObject(router)
+//                .environmentObject(coordinator)
+            LoginView()
         }
     }
 }
