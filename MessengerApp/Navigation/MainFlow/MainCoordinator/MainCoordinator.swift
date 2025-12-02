@@ -1,5 +1,5 @@
 //
-//  Coordinator.swift
+//  MainCoordinator.swift
 //  MessengerApp
 //
 //  Created by Родион Холодов on 24.11.2025.
@@ -29,7 +29,7 @@ final class MainCoordinator: ObservableObject {
     func closeFullScreen() {
         router.dismissFullScreen()
     }
-    
+
     func reset() {
         router.reset()
     }

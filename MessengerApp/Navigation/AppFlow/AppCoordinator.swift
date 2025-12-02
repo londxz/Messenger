@@ -10,13 +10,13 @@ import FirebaseAuth
 
 final class AppCoordinator: ObservableObject {
     @Published var appState: AppState = .loading
-    
+
     private var cancellables: Set<AnyCancellable> = []
-    
+
     init() {
         setSubscribers()
     }
-    
+
     private func setSubscribers() {
         AuthService.shared.$userSession
             .receive(on: DispatchQueue.main)
@@ -25,7 +25,6 @@ final class AppCoordinator: ObservableObject {
                     self?.appState = .authFlow
                 } else {
                     self?.appState = .mainFlow
-                    
                 }
             }
             .store(in: &cancellables)

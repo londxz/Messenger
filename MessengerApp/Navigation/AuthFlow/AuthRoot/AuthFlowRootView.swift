@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AuthFlowRootView: View {
     @EnvironmentObject var authRouter: AuthRouter
-    
+
     var body: some View {
         NavigationStack(path: $authRouter.path) {
             LoginView()

@@ -1,5 +1,5 @@
 //
-//  Router.swift
+//  MainRouter.swift
 //  MessengerApp
 //
 //  Created by Родион Холодов on 24.11.2025.
@@ -27,7 +27,7 @@ final class MainRouter: ObservableObject {
     func dismissFullScreen() {
         fullScreenRoute = nil
     }
-    
+
     func reset() {
         path = []
         fullScreenRoute = nil

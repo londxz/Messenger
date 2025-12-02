@@ -18,11 +18,11 @@ class ProfileViewModel: ObservableObject {
             updateProfileImage()
         }
     }
-    
+
     func logoutUser() {
         AuthService.shared.logoutUser()
     }
-    
+
     func deleteUserAccount() async throws {
         try await AuthService.shared.deleteUser()
     }

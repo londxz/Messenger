@@ -1,5 +1,5 @@
 //
-//  Route.swift
+//  MainRoute.swift
 //  MessengerApp
 //
 //  Created by Родион Холодов on 24.11.2025.
