@@ -6,6 +6,7 @@
 //
 
 import FirebaseAuth
+import FirebaseFirestore
 import Foundation
 
 class AuthService {
@@ -14,6 +15,7 @@ class AuthService {
 
     init() {
         userSession = Auth.auth().currentUser
+        Task { try await UserService.shared.fetchCurrentUser() }
         print("user session id: \(userSession?.uid ?? "nil")")
     }
 
@@ -27,10 +29,11 @@ class AuthService {
         }
     }
 
-    func createUser(email: String, fullname _: String, password: String) async throws {
+    func createUser(email: String, fullname: String, password: String) async throws {
         do {
             let result = try await Auth.auth().createUser(withEmail: email, password: password)
             userSession = result.user
+            try await uploadUserData(email: email, fullname: fullname)
             print("SUCCES in createUser: \(result.user.uid)")
         } catch {
             print("ERROR in createUser: \(error.localizedDescription)")
@@ -52,6 +55,17 @@ class AuthService {
             userSession = nil
         } catch {
             print("ERROR in logoutUser: \(error.localizedDescription)")
+        }
+    }
+
+    private func uploadUserData(email: String, fullname: String) async throws {
+        let user = UserModel(fullname: fullname, email: email)
+
+        do {
+            try Firestore.firestore().collection("users").document(userSession?.uid ?? "").setData(from: user)
+            print("SUCCESS in uploadUserData")
+        } catch {
+            print("ERROR in uploadUserData: \(error.localizedDescription)")
         }
     }
 }

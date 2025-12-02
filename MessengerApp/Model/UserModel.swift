@@ -5,13 +5,16 @@
 //  Created by Родион Холодов on 23.11.2025.
 //
 
+import FirebaseFirestore
 import Foundation
 
 struct UserModel: Identifiable, Hashable, Codable {
-    var id = UUID().uuidString
+    @DocumentID var uid: String?
     var fullname: String
     var email: String
     var profileImageUrl: String?
+
+    var id: String { uid ?? UUID().uuidString }
 }
 
 extension UserModel {
