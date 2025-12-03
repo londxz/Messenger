@@ -8,8 +8,17 @@
 import SwiftUI
 
 struct LoginView: View {
-    @EnvironmentObject private var authCoordinator: AuthCoordinator
     @StateObject private var viewModel = LoginViewModel()
+
+    private let onRegistrationTap: () -> Void
+
+    init(
+        viewModel: LoginViewModel = LoginViewModel(),
+        onRegistrationTap: @escaping () -> Void
+    ) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+        self.onRegistrationTap = onRegistrationTap
+    }
 
     var body: some View {
         ViewThatFits(in: .vertical) {
@@ -99,7 +108,7 @@ struct LoginView: View {
             Divider()
 
             Button {
-                authCoordinator.pushRegisterationView()
+                onRegistrationTap()
             } label: {
                 HStack {
                     Text("Don't have an account?")
@@ -112,8 +121,4 @@ struct LoginView: View {
             }
         }
     }
-}
-
-#Preview {
-    LoginView()
 }

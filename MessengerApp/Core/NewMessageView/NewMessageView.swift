@@ -8,8 +8,13 @@
 import SwiftUI
 
 struct NewMessageView: View {
-    @EnvironmentObject private var mainCoordinator: MainCoordinator
     @State private var searchText = ""
+
+    private let onGoBackTap: () -> Void
+
+    init(onGoBackTap: @escaping () -> Void) {
+        self.onGoBackTap = onGoBackTap
+    }
 
     var body: some View {
         NavigationStack {
@@ -48,16 +53,10 @@ struct NewMessageView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button("Cancel") {
-                        mainCoordinator.closeFullScreen()
+                        onGoBackTap()
                     }
                 }
             }
         }
-    }
-}
-
-#Preview {
-    NavigationStack {
-        NewMessageView()
     }
 }
