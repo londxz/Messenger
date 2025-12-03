@@ -27,6 +27,7 @@
 		3C96E8662ED4A13200D1DA8A /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C96E8652ED4A13200D1DA8A /* ChatMessageCell.swift */; };
 		3C96E8682ED4A92200D1DA8A /* MessageBubbleShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C96E8672ED4A91B00D1DA8A /* MessageBubbleShape.swift */; };
 		3C96E86A2ED4E73500D1DA8A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C96E8692ED4E73500D1DA8A /* GoogleService-Info.plist */; };
+		3C9F8EA62EE0AAB200A8900A /* InboxViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9F8EA52EE0AAAE00A8900A /* InboxViewModel.swift */; };
 		3CA7F8492EDDC76600BD0470 /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA7F8482EDDC76100BD0470 /* AuthCoordinator.swift */; };
 		3CA7F84B2EDDC78B00BD0470 /* AuthRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA7F84A2EDDC78800BD0470 /* AuthRouter.swift */; };
 		3CA7F84D2EDDC7AA00BD0470 /* AuthRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA7F84C2EDDC7A700BD0470 /* AuthRoute.swift */; };
@@ -85,6 +86,7 @@
 		3C96E8652ED4A13200D1DA8A /* ChatMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
 		3C96E8672ED4A91B00D1DA8A /* MessageBubbleShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBubbleShape.swift; sourceTree = "<group>"; };
 		3C96E8692ED4E73500D1DA8A /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3C9F8EA52EE0AAAE00A8900A /* InboxViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewModel.swift; sourceTree = "<group>"; };
 		3CA7F8482EDDC76100BD0470 /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
 		3CA7F84A2EDDC78800BD0470 /* AuthRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRouter.swift; sourceTree = "<group>"; };
 		3CA7F84C2EDDC7A700BD0470 /* AuthRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRoute.swift; sourceTree = "<group>"; };
@@ -308,6 +310,23 @@
 			path = Chat;
 			sourceTree = "<group>";
 		};
+		3C9F8EA32EE0A97200A8900A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3CC2D2912ED1C7B3005327B9 /* InboxView.swift */,
+				3CC2D2962ED1CD7B005327B9 /* InboxRowView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3C9F8EA42EE0A97A00A8900A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				3C9F8EA52EE0AAAE00A8900A /* InboxViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		3CA7F8432EDDC6FE00BD0470 /* MainFlow */ = {
 			isa = PBXGroup;
 			children = (
@@ -393,9 +412,9 @@
 		3CC2D2902ED1C79A005327B9 /* Inbox */ = {
 			isa = PBXGroup;
 			children = (
+				3C9F8EA42EE0A97A00A8900A /* ViewModel */,
+				3C9F8EA32EE0A97200A8900A /* View */,
 				3CC2D2932ED1C986005327B9 /* ActiveUsers */,
-				3CC2D2912ED1C7B3005327B9 /* InboxView.swift */,
-				3CC2D2962ED1CD7B005327B9 /* InboxRowView.swift */,
 			);
 			path = Inbox;
 			sourceTree = "<group>";
@@ -593,6 +612,7 @@
 				3CA7F8542EDDCC2A00BD0470 /* AppState.swift in Sources */,
 				3CBA0D362EDF274F0076B5E9 /* UserService.swift in Sources */,
 				3C60B6BE2ECF861F0096FF27 /* RegisterView.swift in Sources */,
+				3C9F8EA62EE0AAB200A8900A /* InboxViewModel.swift in Sources */,
 				3CA7F8492EDDC76600BD0470 /* AuthCoordinator.swift in Sources */,
 				3CC19B062ED45CA5009966C0 /* MainRouter.swift in Sources */,
 				3CA7F84B2EDDC78B00BD0470 /* AuthRouter.swift in Sources */,

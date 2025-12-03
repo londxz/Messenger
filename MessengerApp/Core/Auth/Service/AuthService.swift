@@ -23,6 +23,7 @@ class AuthService {
         do {
             let result = try await Auth.auth().signIn(withEmail: email, password: password)
             userSession = result.user
+            try await UserService.shared.fetchCurrentUser()
             print("SUCCES in loginUser: \(result.user.uid)")
         } catch {
             print("ERROR in loginUser: \(error.localizedDescription)")
