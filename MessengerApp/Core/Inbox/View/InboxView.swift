@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct InboxView: View {
-    //@State private var userModel = UserModel.mockUser
     @StateObject private var viewModel = InboxViewModel()
 
     private let onShowProfileTap: (UserModel?) -> Void
@@ -42,10 +41,8 @@ struct InboxView: View {
                 ToolbarItem(placement: .topBarLeading) {
                     HStack(spacing: 0) {
                         Button {
-                            //onShowProfileTap(userModel)
                             onShowProfileTap(viewModel.user)
                         } label: {
-                            //ProfileImageView(userModel: UserModel.mockUser, size: .xSmall)
                             ProfileImageView(userModel: viewModel.user, size: .xSmall)
                         }
 
