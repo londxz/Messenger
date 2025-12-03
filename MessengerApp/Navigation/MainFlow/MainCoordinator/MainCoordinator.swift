@@ -32,7 +32,7 @@ final class MainCoordinator: ObservableObject {
     }
 
     @ViewBuilder
-    func makeProfileView(userModel: UserModel) -> some View {
+    func makeProfileView(userModel: UserModel?) -> some View {
         ProfileView(userModel: userModel)
     }
 
@@ -45,7 +45,7 @@ final class MainCoordinator: ObservableObject {
         )
     }
 
-    private func showProfile(userModel: UserModel) {
+    private func showProfile(userModel: UserModel?) {
         router.push(.profile(userModel))
     }
 

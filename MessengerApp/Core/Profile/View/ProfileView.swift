@@ -10,9 +10,9 @@ import SwiftUI
 
 struct ProfileView: View {
     @StateObject private var viewModel = ProfileViewModel()
-    private let userModel: UserModel
+    private let userModel: UserModel?
 
-    init(userModel: UserModel) {
+    init(userModel: UserModel?) {
         self.userModel = userModel
     }
 
@@ -42,7 +42,7 @@ struct ProfileView: View {
                 }
             }
 
-            Text("Bruce Wayne")
+            Text(userModel?.fullname ?? "No name")
                 .font(.title2)
                 .fontWeight(.semibold)
         }

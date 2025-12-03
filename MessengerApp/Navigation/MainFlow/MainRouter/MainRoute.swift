@@ -8,7 +8,7 @@
 import Foundation
 
 enum MainRoute: Hashable {
-    case profile(UserModel)
+    case profile(UserModel?)
 }
 
 enum FullScreenRoute: Identifiable {
