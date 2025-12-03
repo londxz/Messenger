@@ -6,19 +6,46 @@
 //
 
 import Foundation
+import SwiftUI
+import Combine
 
 final class AuthCoordinator: ObservableObject {
-    let router: AuthRouter
+    var router: AuthRouter
+    
+    private var cancellables = Set<AnyCancellable>()
 
-    init(router: AuthRouter) {
+    init(router: AuthRouter = AuthRouter()) {
         self.router = router
+        bindRouterUpdates()
     }
-
-    func pushRegisterationView() {
+    
+    @ViewBuilder
+    func makeLoginView() -> some View {
+        LoginView { [weak self] in
+            self?.pushRegisterationView()
+        }
+    }
+    
+    @ViewBuilder
+    func makeRegisterView() -> some View {
+        RegisterView { [weak self] in
+            self?.goBack()
+        }
+    }
+    
+    private func pushRegisterationView() {
         router.push(.registration)
     }
 
-    func goBack() {
+    private func goBack() {
         router.pop()
+    }
+    
+    private func bindRouterUpdates() {
+        router.objectWillChange
+            .sink { [weak self] _ in
+                self?.objectWillChange.send()
+            }
+            .store(in: &cancellables)
     }
 }

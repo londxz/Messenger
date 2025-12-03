@@ -16,6 +16,14 @@ final class AppCoordinator: ObservableObject {
     init() {
         setSubscribers()
     }
+    
+    func makeAuthCoordinator() -> AuthCoordinator {
+        AuthCoordinator()
+    }
+    
+    func makeMainCoordinator() -> MainCoordinator {
+        MainCoordinator()
+    }
 
     private func setSubscribers() {
         AuthService.shared.$userSession

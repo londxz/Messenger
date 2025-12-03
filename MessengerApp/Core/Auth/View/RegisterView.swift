@@ -8,8 +8,17 @@
 import SwiftUI
 
 struct RegisterView: View {
-    @EnvironmentObject private var authCoordinator: AuthCoordinator
     @StateObject private var viewModel = RegisterViewModel()
+    
+    private let onGoBackToLoginTap: () -> Void
+    
+    init(
+        viewModel: RegisterViewModel = RegisterViewModel(),
+        onGoBackToLoginTap: @escaping () -> Void
+    ) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+        self.onGoBackToLoginTap = onGoBackToLoginTap
+    }
 
     var body: some View {
         ViewThatFits(in: .vertical) {
@@ -68,7 +77,7 @@ struct RegisterView: View {
             Divider()
 
             Button {
-                authCoordinator.goBack()
+                onGoBackToLoginTap()
             } label: {
                 HStack {
                     Text("Already registered?")
@@ -81,8 +90,4 @@ struct RegisterView: View {
             }
         }
     }
-}
-
-#Preview {
-    RegisterView()
 }

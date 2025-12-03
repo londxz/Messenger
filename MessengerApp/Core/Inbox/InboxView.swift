@@ -8,8 +8,18 @@
 import SwiftUI
 
 struct InboxView: View {
-    @EnvironmentObject private var mainCoordinator: MainCoordinator
     @State private var userModel = UserModel.mockUser
+    
+    private let onShowProfileTap: (UserModel) -> Void
+    private let onShowNewMessageTap: () -> Void
+    
+    init(
+        onShowProfileTap: @escaping (UserModel) -> Void,
+        onShowNewMessageTap: @escaping () -> Void
+    ) {
+        self.onShowProfileTap = onShowProfileTap
+        self.onShowNewMessageTap = onShowNewMessageTap
+    }
 
     var body: some View {
         GeometryReader { geo in
@@ -31,7 +41,7 @@ struct InboxView: View {
                 ToolbarItem(placement: .topBarLeading) {
                     HStack(spacing: 0) {
                         Button {
-                            mainCoordinator.showProfile(userModel: userModel)
+                            onShowProfileTap(userModel)
                         } label: {
                             ProfileImageView(userModel: UserModel.mockUser, size: .xSmall)
                         }
@@ -44,7 +54,7 @@ struct InboxView: View {
 
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
-                        mainCoordinator.showNewMessage()
+                        onShowNewMessageTap()
                     } label: {
                         Image(systemName: "square.and.pencil.circle.fill")
                             .resizable()
@@ -55,8 +65,4 @@ struct InboxView: View {
             }
         }
     }
-}
-
-#Preview {
-    InboxView()
 }

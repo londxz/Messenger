@@ -24,7 +24,7 @@ struct MessengerAppApp: App {
 
     var body: some Scene {
         WindowGroup {
-            AppFlowRootView()
+            AppCoordinatorView()
         }
     }
 }
