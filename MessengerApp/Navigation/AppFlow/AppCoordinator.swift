@@ -16,11 +16,11 @@ final class AppCoordinator: ObservableObject {
     init() {
         setSubscribers()
     }
-    
+
     func makeAuthCoordinator() -> AuthCoordinator {
         AuthCoordinator()
     }
-    
+
     func makeMainCoordinator() -> MainCoordinator {
         MainCoordinator()
     }

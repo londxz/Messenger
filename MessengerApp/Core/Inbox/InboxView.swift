@@ -9,10 +9,10 @@ import SwiftUI
 
 struct InboxView: View {
     @State private var userModel = UserModel.mockUser
-    
+
     private let onShowProfileTap: (UserModel) -> Void
     private let onShowNewMessageTap: () -> Void
-    
+
     init(
         onShowProfileTap: @escaping (UserModel) -> Void,
         onShowNewMessageTap: @escaping () -> Void

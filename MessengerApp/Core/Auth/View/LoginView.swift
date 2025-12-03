@@ -9,9 +9,9 @@ import SwiftUI
 
 struct LoginView: View {
     @StateObject private var viewModel = LoginViewModel()
-    
+
     private let onRegistrationTap: () -> Void
-    
+
     init(
         viewModel: LoginViewModel = LoginViewModel(),
         onRegistrationTap: @escaping () -> Void

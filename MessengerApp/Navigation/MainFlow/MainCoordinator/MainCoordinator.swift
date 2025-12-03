@@ -5,20 +5,20 @@
 //  Created by Родион Холодов on 24.11.2025.
 //
 
+import Combine
 import Foundation
 import SwiftUI
-import Combine
 
 final class MainCoordinator: ObservableObject {
     var router: MainRouter
-    
+
     private var cancellables = Set<AnyCancellable>()
 
     init(router: MainRouter = MainRouter()) {
         self.router = router
         bindRouterUpdates()
     }
-    
+
     @ViewBuilder
     func makeInboxView() -> some View {
         InboxView(
@@ -30,12 +30,12 @@ final class MainCoordinator: ObservableObject {
             }
         )
     }
-    
+
     @ViewBuilder
     func makeProfileView(userModel: UserModel) -> some View {
         ProfileView(userModel: userModel)
     }
-    
+
     @ViewBuilder
     func makeNewMessageView() -> some View {
         NewMessageView(
@@ -56,7 +56,7 @@ final class MainCoordinator: ObservableObject {
     private func closeFullScreen() {
         router.dismissFullScreen()
     }
-    
+
     private func bindRouterUpdates() {
         router.objectWillChange
             .sink { [weak self] _ in

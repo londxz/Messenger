@@ -1,5 +1,5 @@
 //
-//  MainFlowRootView.swift
+//  MainCoordinatorView.swift
 //  MessengerApp
 //
 //  Created by Родион Холодов on 24.11.2025.
@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainCoordinatorView: View {
     @StateObject private var coordinator: MainCoordinator
-    
+
     init(coordinator: MainCoordinator) {
         _coordinator = StateObject(wrappedValue: coordinator)
     }

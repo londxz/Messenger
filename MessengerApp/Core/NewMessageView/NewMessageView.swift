@@ -9,9 +9,9 @@ import SwiftUI
 
 struct NewMessageView: View {
     @State private var searchText = ""
-    
+
     private let onGoBackTap: () -> Void
-    
+
     init(onGoBackTap: @escaping () -> Void) {
         self.onGoBackTap = onGoBackTap
     }
