@@ -12,6 +12,7 @@ permissions:
 
 env:
   COVERAGE_THRESHOLD: 10
+  FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT: 120
 
 jobs:
   test:

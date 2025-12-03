@@ -8,10 +8,17 @@
 import SwiftUI
 
 struct RegisterView: View {
-    @Environment(\.dismiss) var dismiss
-    @State private var emailText = ""
-    @State private var fullnameText = ""
-    @State private var passwordText = ""
+    @StateObject private var viewModel = RegisterViewModel()
+
+    private let onGoBackToLoginTap: () -> Void
+
+    init(
+        viewModel: RegisterViewModel = RegisterViewModel(),
+        onGoBackToLoginTap: @escaping () -> Void
+    ) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+        self.onGoBackToLoginTap = onGoBackToLoginTap
+    }
 
     var body: some View {
         ViewThatFits(in: .vertical) {
@@ -35,17 +42,17 @@ struct RegisterView: View {
                 .accessibilityHidden(true)
 
             VStack {
-                TextField("Enter your email", text: $emailText)
+                TextField("Enter your email", text: $viewModel.email)
                     .font(.subheadline)
                     .padding(12)
                     .background(Color(.systemGray6))
                     .clipShape(RoundedRectangle(cornerRadius: 10))
-                TextField("Enter your fullname", text: $fullnameText)
+                TextField("Enter your fullname", text: $viewModel.fullname)
                     .font(.subheadline)
                     .padding(12)
                     .background(Color(.systemGray6))
                     .clipShape(RoundedRectangle(cornerRadius: 10))
-                SecureField("Enter your password", text: $passwordText)
+                SecureField("Enter your password", text: $viewModel.password)
                     .font(.subheadline)
                     .padding(12)
                     .background(Color(.systemGray6))
@@ -54,7 +61,7 @@ struct RegisterView: View {
             .padding(.bottom, 8)
 
             Button {
-                print("Sign Up")
+                Task { try await viewModel.createUser() }
             } label: {
                 Text("Sign Up")
                     .font(.headline)
@@ -70,7 +77,7 @@ struct RegisterView: View {
             Divider()
 
             Button {
-                dismiss()
+                onGoBackToLoginTap()
             } label: {
                 HStack {
                     Text("Already registered?")
@@ -83,8 +90,4 @@ struct RegisterView: View {
             }
         }
     }
-}
-
-#Preview {
-    RegisterView()
 }

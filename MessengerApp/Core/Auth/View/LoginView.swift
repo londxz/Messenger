@@ -8,18 +8,25 @@
 import SwiftUI
 
 struct LoginView: View {
-    @State private var emailText = ""
-    @State private var passwordText = ""
+    @StateObject private var viewModel = LoginViewModel()
+
+    private let onRegistrationTap: () -> Void
+
+    init(
+        viewModel: LoginViewModel = LoginViewModel(),
+        onRegistrationTap: @escaping () -> Void
+    ) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+        self.onRegistrationTap = onRegistrationTap
+    }
 
     var body: some View {
-        NavigationStack {
-            ViewThatFits(in: .vertical) {
-                loginView
-                ScrollView { loginView }
-            }
-            .padding(.horizontal, 28)
-            .ignoresSafeArea(.keyboard, edges: .bottom)
+        ViewThatFits(in: .vertical) {
+            loginView
+            ScrollView { loginView }
         }
+        .padding(.horizontal, 28)
+        .ignoresSafeArea(.keyboard, edges: .bottom)
     }
 
     @ViewBuilder
@@ -34,12 +41,12 @@ struct LoginView: View {
                 .accessibilityHidden(true)
 
             VStack {
-                TextField("Enter your email", text: $emailText)
+                TextField("Enter your email", text: $viewModel.email)
                     .font(.subheadline)
                     .padding(12)
                     .background(Color(.systemGray6))
                     .clipShape(RoundedRectangle(cornerRadius: 10))
-                SecureField("Enter your password", text: $passwordText)
+                SecureField("Enter your password", text: $viewModel.password)
                     .font(.subheadline)
                     .padding(12)
                     .background(Color(.systemGray6))
@@ -58,7 +65,7 @@ struct LoginView: View {
             }
 
             Button {
-                print("Login")
+                Task { try await viewModel.loginUser() }
             } label: {
                 Text("Login")
                     .font(.headline)
@@ -100,8 +107,8 @@ struct LoginView: View {
 
             Divider()
 
-            NavigationLink {
-                RegisterView()
+            Button {
+                onRegistrationTap()
             } label: {
                 HStack {
                     Text("Don't have an account?")
@@ -114,8 +121,4 @@ struct LoginView: View {
             }
         }
     }
-}
-
-#Preview {
-    LoginView()
 }

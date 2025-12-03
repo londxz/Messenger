@@ -63,9 +63,11 @@ struct ProfileView: View {
             }
 
             Section {
-                Button("Logout") {}
+                Button("Logout") { viewModel.logoutUser() }
 
-                Button("Delete account") {}
+                Button("Delete account") {
+                    Task { try await viewModel.deleteUserAccount() }
+                }
             }
             .foregroundStyle(.red)
         }

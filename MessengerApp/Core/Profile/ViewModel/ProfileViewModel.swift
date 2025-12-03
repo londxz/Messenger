@@ -19,6 +19,14 @@ class ProfileViewModel: ObservableObject {
         }
     }
 
+    func logoutUser() {
+        AuthService.shared.logoutUser()
+    }
+
+    func deleteUserAccount() async throws {
+        try await AuthService.shared.deleteUser()
+    }
+
     func loadProfileImage() async throws {
         guard
             let imageData = try await loader?.loadImageData(),
