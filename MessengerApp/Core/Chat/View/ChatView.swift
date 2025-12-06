@@ -33,14 +33,18 @@ struct ChatView: View {
                                 .foregroundStyle(.gray)
                         }
                     }
-
-                    ForEach(0 ... 15, id: \.self) { _ in
-                        ChatMessageCell(
-                            isFromCurrentUser: Bool.random(),
-                            contentWidth: geo.size.width
-                        )
+                    
+                    if !viewModel.messages.isEmpty {
+                        ForEach(viewModel.messages) { message in
+                            ChatMessageCell(
+                                messageModel: message,
+                                isFromCurrentUser: message.isFromCurrentUser,
+                                contentWidth: geo.size.width
+                            )
+                        }
                     }
                 }
+                .frame(width: geo.size.width)
             }
 
             HStack(alignment: .bottom, spacing: 0) {
@@ -49,6 +53,7 @@ struct ChatView: View {
                     .textInputAutocapitalization(.none)
 
                 Button {
+                    guard !viewModel.messageText.isEmpty else { return }
                     viewModel.sendMessage()
                 } label: {
                     Text("Send")
