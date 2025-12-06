@@ -9,4 +9,14 @@ import Foundation
 
 class ChatViewModel: ObservableObject {
     @Published var messageText = ""
+    let userModel: UserModel
+    
+    init(userModel: UserModel) {
+        self.userModel = userModel
+    }
+    
+    func sendMessage() {
+        MessageService.shared.sendMessage(messageText, toUser: userModel)
+        messageText = ""
+    }
 }

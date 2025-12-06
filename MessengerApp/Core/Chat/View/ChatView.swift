@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct ChatView: View {
-    @StateObject private var viewModel = ChatViewModel()
-    @State private var userModel: UserModel
+    @StateObject private var viewModel: ChatViewModel
+    private let userModel: UserModel
 
     init(userModel: UserModel) {
         self.userModel = userModel
+        _viewModel = StateObject(wrappedValue: ChatViewModel(userModel: userModel))
     }
 
     var body: some View {
@@ -48,7 +49,7 @@ struct ChatView: View {
                     .textInputAutocapitalization(.none)
 
                 Button {
-                    print("send message")
+                    viewModel.sendMessage()
                 } label: {
                     Text("Send")
                         .fontWeight(.semibold)
