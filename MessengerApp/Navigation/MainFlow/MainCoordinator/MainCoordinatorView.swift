@@ -21,6 +21,8 @@ struct MainCoordinatorView: View {
                     switch route {
                     case let .profile(userModel):
                         coordinator.makeProfileView(userModel: userModel)
+                    case let .chatWithUser(userModel):
+                        coordinator.makeChatView(userModel: userModel)
                     }
                 }
                 .fullScreenCover(item: $coordinator.router.fullScreenRoute) { route in

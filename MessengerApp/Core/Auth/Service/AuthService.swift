@@ -15,15 +15,19 @@ class AuthService {
 
     init() {
         userSession = Auth.auth().currentUser
-        Task { try await UserService.shared.fetchCurrentUser() }
+        fetchCurrentUser()
         print("user session id: \(userSession?.uid ?? "nil")")
+        Task {
+            let res = try await UserService.shared.fetchAllUsers()
+            print(res)
+        }
     }
 
     func loginUser(email: String, password: String) async throws {
         do {
             let result = try await Auth.auth().signIn(withEmail: email, password: password)
             userSession = result.user
-            try await UserService.shared.fetchCurrentUser()
+            fetchCurrentUser()
             print("SUCCES in loginUser: \(result.user.uid)")
         } catch {
             print("ERROR in loginUser: \(error.localizedDescription)")
@@ -35,6 +39,7 @@ class AuthService {
             let result = try await Auth.auth().createUser(withEmail: email, password: password)
             userSession = result.user
             try await uploadUserData(email: email, fullname: fullname)
+            fetchCurrentUser()
             print("SUCCES in createUser: \(result.user.uid)")
         } catch {
             print("ERROR in createUser: \(error.localizedDescription)")
@@ -44,7 +49,7 @@ class AuthService {
     func deleteUser() async throws {
         do {
             try await Auth.auth().currentUser?.delete()
-            userSession = nil
+            resetUser()
         } catch {
             print("ERROR in deleteUser: \(error.localizedDescription)")
         }
@@ -53,7 +58,7 @@ class AuthService {
     func logoutUser() {
         do {
             try Auth.auth().signOut()
-            userSession = nil
+            resetUser()
         } catch {
             print("ERROR in logoutUser: \(error.localizedDescription)")
         }
@@ -68,5 +73,14 @@ class AuthService {
         } catch {
             print("ERROR in uploadUserData: \(error.localizedDescription)")
         }
+    }
+
+    private func fetchCurrentUser() {
+        Task { try await UserService.shared.fetchCurrentUser() }
+    }
+
+    private func resetUser() {
+        userSession = nil
+        UserService.shared.currentUser = nil
     }
 }

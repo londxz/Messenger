@@ -27,4 +27,9 @@ class UserService {
             print("ERROR in fetchCurrentUser: \(error.localizedDescription)")
         }
     }
+
+    func fetchAllUsers() async throws -> [UserModel] {
+        let querySnapshot = try await Firestore.firestore().collection("users").getDocuments()
+        return querySnapshot.documents.compactMap { try? $0.data(as: UserModel.self) }
+    }
 }

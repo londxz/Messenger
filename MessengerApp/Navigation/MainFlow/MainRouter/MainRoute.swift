@@ -9,6 +9,7 @@ import Foundation
 
 enum MainRoute: Hashable {
     case profile(UserModel?)
+    case chatWithUser(UserModel)
 }
 
 enum FullScreenRoute: Identifiable {

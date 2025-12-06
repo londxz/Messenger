@@ -37,10 +37,18 @@ final class MainCoordinator: ObservableObject {
     }
 
     @ViewBuilder
+    func makeChatView(userModel: UserModel) -> some View {
+        ChatView(userModel: userModel)
+    }
+
+    @ViewBuilder
     func makeNewMessageView() -> some View {
         NewMessageView(
             onGoBackTap: { [weak self] in
                 self?.closeFullScreen()
+            },
+            onSendMessageTap: { [weak self] userModel in
+                self?.showChatFromNewMessage(userModel: userModel)
             }
         )
     }
@@ -55,6 +63,11 @@ final class MainCoordinator: ObservableObject {
 
     private func closeFullScreen() {
         router.dismissFullScreen()
+    }
+
+    private func showChatFromNewMessage(userModel: UserModel) {
+        closeFullScreen()
+        router.push(.chatWithUser(userModel))
     }
 
     private func bindRouterUpdates() {

@@ -8,18 +8,23 @@
 import SwiftUI
 
 struct NewMessageView: View {
-    @State private var searchText = ""
+    @StateObject private var viewModel = NewMessageViewModel()
 
     private let onGoBackTap: () -> Void
+    private let onSendMessageTap: (UserModel) -> Void
 
-    init(onGoBackTap: @escaping () -> Void) {
+    init(
+        onGoBackTap: @escaping () -> Void,
+        onSendMessageTap: @escaping (UserModel) -> Void
+    ) {
         self.onGoBackTap = onGoBackTap
+        self.onSendMessageTap = onSendMessageTap
     }
 
     var body: some View {
         NavigationStack {
             ScrollView {
-                TextField("To:", text: $searchText)
+                TextField("To:", text: $viewModel.searchText)
                     .padding(.leading)
                     .frame(height: 44)
                     .background(Color(.systemGroupedBackground))
@@ -32,16 +37,17 @@ struct NewMessageView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding()
 
-                ForEach(0 ... 10, id: \.self) { _ in
+                ForEach(viewModel.users) { user in
                     HStack {
-                        ProfileImageView(userModel: UserModel.mockUser, size: .small)
-                        Text("Bruce Wayne")
+                        ProfileImageView(userModel: user, size: .small)
+                        Text(user.fullname)
                             .font(.subheadline)
                             .fontWeight(.semibold)
 
                         Spacer()
                     }
                     .padding(.leading)
+                    .onTapGesture { onSendMessageTap(user) }
 
                     Divider()
                         .padding(.leading, 64)
