@@ -11,18 +11,18 @@ class ChatViewModel: ObservableObject {
     @Published var messageText = ""
     @Published var messages = [MessageModel]()
     let service: ChatService
-    
+
     init(chatPartner: UserModel) {
-        self.service = ChatService(chatPartner: chatPartner)
+        service = ChatService(chatPartner: chatPartner)
         observeMessages()
     }
-    
+
     func observeMessages() {
-        service.observeMessages() { [weak self] message in
+        service.observeMessages { [weak self] message in
             self?.messages.append(contentsOf: message)
         }
     }
-    
+
     func sendMessage() {
         service.sendMessage(messageText)
         messageText = ""

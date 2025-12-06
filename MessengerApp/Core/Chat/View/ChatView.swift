@@ -33,7 +33,7 @@ struct ChatView: View {
                                 .foregroundStyle(.gray)
                         }
                     }
-                    
+
                     if !viewModel.messages.isEmpty {
                         ForEach(viewModel.messages) { message in
                             ChatMessageCell(

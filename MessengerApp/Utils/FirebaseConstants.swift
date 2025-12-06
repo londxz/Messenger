@@ -7,7 +7,7 @@
 
 import FirebaseFirestore
 
-struct FirebaseConstants {
+enum FirebaseConstants {
     static let UsersCollection = Firestore.firestore().collection("users")
     static let MessagesCollection = Firestore.firestore().collection("messages")
 }
