@@ -13,7 +13,7 @@ struct ChatView: View {
 
     init(userModel: UserModel) {
         self.userModel = userModel
-        _viewModel = StateObject(wrappedValue: ChatViewModel(userModel: userModel))
+        _viewModel = StateObject(wrappedValue: ChatViewModel(chatPartner: userModel))
     }
 
     var body: some View {

@@ -1,5 +1,5 @@
 //
-//  MessageService.swift
+//  ChatService.swift
 //  MessengerApp
 //
 //  Created by Родион Холодов on 06.12.2025.
@@ -9,22 +9,21 @@ import Foundation
 import FirebaseAuth
 import FirebaseFirestore
 
-class MessageService {
-    static let shared = MessageService()
-    let messageCollection = Firestore.firestore().collection("messages")
+struct ChatService {
+    let chatPartner: UserModel
     
-    func sendMessage(_ messageText: String, toUser user: UserModel) {
+    func sendMessage(_ messageText: String) {
         guard let fromUserId = Auth.auth().currentUser?.uid else { return }
-        let toUserId = user.id
+        let chatPartnerId = chatPartner.id
         
-        let fromUserRef = messageCollection.document(fromUserId).collection(toUserId).document()
-        let toUserRef = messageCollection.document(toUserId).collection(fromUserId)
+        let fromUserRef = FirebaseConstants.MessagesCollection.document(fromUserId).collection(chatPartnerId).document()
+        let toUserRef = FirebaseConstants.MessagesCollection.document(chatPartnerId).collection(fromUserId)
         
         let messageId = fromUserRef.documentID
         
         let message = MessageModel(
             fromId: fromUserId,
-            toId: toUserId,
+            toId: chatPartnerId,
             messageText: messageText,
             timestamp: Timestamp()
         )
@@ -38,12 +37,12 @@ class MessageService {
         }
     }
     
-    func observeMessages(chatPartnerUser: UserModel, completion: @escaping ([MessageModel]) -> Void) {
+    func observeMessages(completion: @escaping ([MessageModel]) -> Void) {
         guard let currentUserUid = Auth.auth().currentUser?.uid else { return }
         
-        let query = messageCollection
+        let query = FirebaseConstants.MessagesCollection
             .document(currentUserUid)
-            .collection(chatPartnerUser.id)
+            .collection(chatPartner.id)
             .order(by: "timestamp")
         
         query.addSnapshotListener { snapshot, _ in
@@ -51,7 +50,7 @@ class MessageService {
             var messages = changes.compactMap { try? $0.document.data(as: MessageModel.self) }
             
             for (index, message) in messages.enumerated() where !message.isFromCurrentUser {
-                messages[index].userModel = chatPartnerUser
+                messages[index].userModel = chatPartner
             }
             
             completion(messages)
