@@ -8,17 +8,22 @@
 import SwiftUI
 
 struct ChatView: View {
-    @State private var messageText = ""
+    @StateObject private var viewModel = ChatViewModel()
+    @State private var userModel: UserModel
+
+    init(userModel: UserModel) {
+        self.userModel = userModel
+    }
 
     var body: some View {
         VStack {
             GeometryReader { geo in
                 ScrollView {
                     VStack {
-                        ProfileImageView(userModel: UserModel.mockUser, size: .xLarge)
+                        ProfileImageView(userModel: userModel, size: .xLarge)
 
                         VStack(spacing: 4) {
-                            Text("Bruce Wayne")
+                            Text(userModel.fullname)
                                 .font(.title3)
                                 .fontWeight(.semibold)
 
@@ -38,7 +43,7 @@ struct ChatView: View {
             }
 
             HStack(alignment: .bottom, spacing: 0) {
-                TextField("Send message...", text: $messageText, axis: .vertical)
+                TextField("Send message...", text: $viewModel.messageText, axis: .vertical)
                     .padding()
                     .textInputAutocapitalization(.none)
 
@@ -57,8 +62,4 @@ struct ChatView: View {
             .padding(.vertical, 8)
         }
     }
-}
-
-#Preview {
-    ChatView()
 }
