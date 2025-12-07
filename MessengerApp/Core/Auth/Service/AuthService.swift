@@ -18,8 +18,7 @@ class AuthService {
         fetchCurrentUser()
         print("user session id: \(userSession?.uid ?? "nil")")
         Task {
-            let res = try await UserService.shared.fetchAllUsers()
-            print(res)
+            _ = try await UserService.shared.fetchAllUsers()
         }
     }
 

@@ -22,7 +22,15 @@ struct MessageModel: Identifiable, Hashable, Codable {
         messageId ?? UUID().uuidString
     }
 
+    var chatPartner: String {
+        fromId == Auth.auth().currentUser?.uid ? toId : fromId
+    }
+
     var isFromCurrentUser: Bool {
         Auth.auth().currentUser?.uid == fromId
+    }
+
+    var timestampString: String {
+        timestamp.dateValue().timestampString()
     }
 }

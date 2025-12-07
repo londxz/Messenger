@@ -19,6 +19,9 @@ struct ChatService {
         let fromUserRef = FirebaseConstants.MessagesCollection.document(fromUserId).collection(chatPartnerId).document()
         let toUserRef = FirebaseConstants.MessagesCollection.document(chatPartnerId).collection(fromUserId)
 
+        let recentFromUserRef = FirebaseConstants.MessagesCollection.document(fromUserId).collection("recent-messages").document(chatPartnerId)
+        let recentToUserRef = FirebaseConstants.MessagesCollection.document(chatPartnerId).collection("recent-messages").document(fromUserId)
+
         let messageId = fromUserRef.documentID
 
         let message = MessageModel(
@@ -31,6 +34,10 @@ struct ChatService {
         do {
             try fromUserRef.setData(from: message)
             try toUserRef.document(messageId).setData(from: message)
+
+            try recentFromUserRef.setData(from: message)
+            try recentToUserRef.setData(from: message)
+
             print("SUCCESS in MessageService.sendMessage")
         } catch {
             print("ERROR in MessageService.sendMessage: \(error.localizedDescription)")

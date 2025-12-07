@@ -27,6 +27,9 @@ final class MainCoordinator: ObservableObject {
             },
             onShowNewMessageTap: { [weak self] in
                 self?.showNewMessage()
+            },
+            onInboxMessageTap: { [weak self] userModel in
+                self?.showChatFromInboxMessage(userModel: userModel)
             }
         )
     }
@@ -68,6 +71,10 @@ final class MainCoordinator: ObservableObject {
     private func showChatFromNewMessage(userModel: UserModel) {
         closeFullScreen()
         router.push(.chatWithUser(userModel))
+    }
+
+    private func showChatFromInboxMessage(userModel: UserModel?) {
+        router.push(.chatFromInbox(userModel))
     }
 
     private func bindRouterUpdates() {

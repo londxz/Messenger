@@ -12,31 +12,35 @@ struct InboxView: View {
 
     private let onShowProfileTap: (UserModel?) -> Void
     private let onShowNewMessageTap: () -> Void
+    private let onInboxMessageTap: (UserModel?) -> Void
 
     init(
         onShowProfileTap: @escaping (UserModel?) -> Void,
-        onShowNewMessageTap: @escaping () -> Void
+        onShowNewMessageTap: @escaping () -> Void,
+        onInboxMessageTap: @escaping (UserModel?) -> Void
     ) {
         self.onShowProfileTap = onShowProfileTap
         self.onShowNewMessageTap = onShowNewMessageTap
+        self.onInboxMessageTap = onInboxMessageTap
     }
 
     var body: some View {
         GeometryReader { geo in
-            ScrollView {
-                VStack {
-                    ActiveUsersView()
-                        .frame(height: 100)
-                        .padding(16)
-                    List {
-                        ForEach(0 ... 10, id: \.self) { _ in
-                            InboxRowView()
-                        }
+            List {
+                ActiveUsersView()
+                    .frame(height: 100)
+                    .listRowSeparator(.hidden)
+
+                ForEach(viewModel.recentMessages) { message in
+                    Button {
+                        onInboxMessageTap(message.userModel)
+                    } label: {
+                        InboxRowView(message: message)
                     }
-                    .listStyle(PlainListStyle())
-                    .frame(height: max(0, geo.size.height - 100))
                 }
             }
+            .listStyle(PlainListStyle())
+            .frame(height: max(0, geo.size.height - 100))
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     HStack(spacing: 0) {

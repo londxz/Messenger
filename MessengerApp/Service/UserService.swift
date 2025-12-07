@@ -32,4 +32,11 @@ class UserService {
         let querySnapshot = try await FirebaseConstants.UsersCollection.getDocuments()
         return querySnapshot.documents.compactMap { try? $0.data(as: UserModel.self) }
     }
+
+    func fetchUserFromUid(userUid: String, completion: @escaping (UserModel) -> Void) {
+        FirebaseConstants.UsersCollection.document(userUid).getDocument { snapshot, _ in
+            guard let userModel = try? snapshot?.data(as: UserModel.self) else { return }
+            completion(userModel)
+        }
+    }
 }
