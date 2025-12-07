@@ -19,7 +19,7 @@ class UserService {
         }
 
         do {
-            let documentSnapshot = try await Firestore.firestore().collection("users").document(uid).getDocument()
+            let documentSnapshot = try await FirebaseConstants.UsersCollection.document(uid).getDocument()
             let user = try documentSnapshot.data(as: UserModel.self)
             currentUser = user
             print(user)
@@ -29,7 +29,7 @@ class UserService {
     }
 
     func fetchAllUsers() async throws -> [UserModel] {
-        let querySnapshot = try await Firestore.firestore().collection("users").getDocuments()
+        let querySnapshot = try await FirebaseConstants.UsersCollection.getDocuments()
         return querySnapshot.documents.compactMap { try? $0.data(as: UserModel.self) }
     }
 }

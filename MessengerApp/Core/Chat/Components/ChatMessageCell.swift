@@ -8,35 +8,36 @@
 import SwiftUI
 
 struct ChatMessageCell: View {
+    let messageModel: MessageModel
     let isFromCurrentUser: Bool
     let contentWidth: CGFloat
 
     var body: some View {
-        if isFromCurrentUser {
+        if messageModel.isFromCurrentUser {
             HStack {
                 Spacer()
 
-                Text("Hi")
+                Text(messageModel.messageText)
                     .font(.subheadline)
                     .padding(.trailing, 4)
                     .padding(12)
                     .background(Color(.systemBlue))
                     .foregroundStyle(.white)
-                    .clipShape(MessageBubbleShape(isFromCurrentUser: isFromCurrentUser))
+                    .clipShape(MessageBubbleShape(isFromCurrentUser: messageModel.isFromCurrentUser))
                     .frame(maxWidth: contentWidth * 0.7, alignment: .trailing)
             }
             .padding(.horizontal)
         } else {
             HStack(alignment: .bottom) {
-                ProfileImageView(userModel: UserModel.mockUser, size: .xxSmall)
+                ProfileImageView(userModel: messageModel.userModel, size: .xxSmall)
 
-                Text("This message was typed by current user longer really what look like This message was typed by current user longer really what look like")
+                Text(messageModel.messageText)
                     .font(.subheadline)
                     .padding(.leading, 4)
                     .padding(12)
                     .background(Color(.systemGray5))
                     .foregroundStyle(.black)
-                    .clipShape(MessageBubbleShape(isFromCurrentUser: isFromCurrentUser))
+                    .clipShape(MessageBubbleShape(isFromCurrentUser: messageModel.isFromCurrentUser))
                     .frame(maxWidth: contentWidth * 0.5, alignment: .leading)
 
                 Spacer()
@@ -44,8 +45,4 @@ struct ChatMessageCell: View {
             .padding(.horizontal)
         }
     }
-}
-
-#Preview {
-    ChatMessageCell(isFromCurrentUser: true, contentWidth: 440)
 }

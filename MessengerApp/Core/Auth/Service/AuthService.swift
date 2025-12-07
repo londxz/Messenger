@@ -68,7 +68,7 @@ class AuthService {
         let user = UserModel(fullname: fullname, email: email)
 
         do {
-            try Firestore.firestore().collection("users").document(userSession?.uid ?? "").setData(from: user)
+            try FirebaseConstants.UsersCollection.document(userSession?.uid ?? "").setData(from: user)
             print("SUCCESS in uploadUserData")
         } catch {
             print("ERROR in uploadUserData: \(error.localizedDescription)")

@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct ChatView: View {
-    @StateObject private var viewModel = ChatViewModel()
-    @State private var userModel: UserModel
+    @StateObject private var viewModel: ChatViewModel
+    private let userModel: UserModel
 
     init(userModel: UserModel) {
         self.userModel = userModel
+        _viewModel = StateObject(wrappedValue: ChatViewModel(chatPartner: userModel))
     }
 
     var body: some View {
@@ -33,13 +34,17 @@ struct ChatView: View {
                         }
                     }
 
-                    ForEach(0 ... 15, id: \.self) { _ in
-                        ChatMessageCell(
-                            isFromCurrentUser: Bool.random(),
-                            contentWidth: geo.size.width
-                        )
+                    if !viewModel.messages.isEmpty {
+                        ForEach(viewModel.messages) { message in
+                            ChatMessageCell(
+                                messageModel: message,
+                                isFromCurrentUser: message.isFromCurrentUser,
+                                contentWidth: geo.size.width
+                            )
+                        }
                     }
                 }
+                .frame(width: geo.size.width)
             }
 
             HStack(alignment: .bottom, spacing: 0) {
@@ -48,7 +53,8 @@ struct ChatView: View {
                     .textInputAutocapitalization(.none)
 
                 Button {
-                    print("send message")
+                    guard !viewModel.messageText.isEmpty else { return }
+                    viewModel.sendMessage()
                 } label: {
                     Text("Send")
                         .fontWeight(.semibold)
