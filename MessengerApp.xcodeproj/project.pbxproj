@@ -55,6 +55,7 @@
 		3CEAEDBD2ED2408F001F46D0 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEAEDBC2ED2408F001F46D0 /* ProfileView.swift */; };
 		3CEAEDBF2ED240C8001F46D0 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEAEDBE2ED240C3001F46D0 /* SettingViewModel.swift */; };
 		3CEAEDC12ED24835001F46D0 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEAEDC02ED24831001F46D0 /* ProfileViewModel.swift */; };
+		3CEF73932EE608340071F905 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEF73922EE6082C0071F905 /* DateExtension.swift */; };
 		3CF092B92EDD943200621B74 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF092B82EDD942E00621B74 /* AuthService.swift */; };
 		3CF092BB2EDD947800621B74 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF092BA2EDD947400621B74 /* LoginViewModel.swift */; };
 		3CF092BD2EDD948000621B74 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF092BC2EDD947B00621B74 /* RegisterViewModel.swift */; };
@@ -119,6 +120,7 @@
 		3CEAEDBC2ED2408F001F46D0 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		3CEAEDBE2ED240C3001F46D0 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		3CEAEDC02ED24831001F46D0 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		3CEF73922EE6082C0071F905 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		3CF092B82EDD942E00621B74 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		3CF092BA2EDD947400621B74 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		3CF092BC2EDD947B00621B74 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
@@ -234,9 +236,9 @@
 			isa = PBXGroup;
 			children = (
 				3C2F0A002EC860DF0064FEA4 /* App */,
-				3C2F0A042EC861100064FEA4 /* Extension */,
 				3CC19B012ED45C18009966C0 /* Navigation */,
 				3C2F0A012EC860F60064FEA4 /* Core */,
+				3C2F0A042EC861100064FEA4 /* Extension */,
 				3C2F0A022EC860FF0064FEA4 /* Model */,
 				3C2F0A032EC861080064FEA4 /* Service */,
 				3C1E87052EE4C62700E0E3DC /* Utils */,
@@ -296,6 +298,7 @@
 		3C2F0A042EC861100064FEA4 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				3CEF73922EE6082C0071F905 /* DateExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -692,6 +695,7 @@
 				3C2F0A092EC861870064FEA4 /* LoginView.swift in Sources */,
 				3C96E8612ED47A7400D1DA8A /* ProfileImageSize.swift in Sources */,
 				3CA7F8542EDDCC2A00BD0470 /* AppState.swift in Sources */,
+				3CEF73932EE608340071F905 /* DateExtension.swift in Sources */,
 				3C1E87042EE4C40800E0E3DC /* ChatService.swift in Sources */,
 				3CBA0D362EDF274F0076B5E9 /* UserService.swift in Sources */,
 				3C60B6BE2ECF861F0096FF27 /* RegisterView.swift in Sources */,

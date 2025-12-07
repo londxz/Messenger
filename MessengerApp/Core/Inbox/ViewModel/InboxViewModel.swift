@@ -52,7 +52,13 @@ class InboxViewModel: ObservableObject {
                 } else {
                     self?.recentMessages.append(messages[i])
                 }
+                
+                self?.sortMessages()
             }
         }
+    }
+    
+    private func sortMessages() {
+        recentMessages.sort { $0.timestamp.dateValue() > $1.timestamp.dateValue() }
     }
 }
