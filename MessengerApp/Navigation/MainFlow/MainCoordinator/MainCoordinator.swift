@@ -72,7 +72,7 @@ final class MainCoordinator: ObservableObject {
         closeFullScreen()
         router.push(.chatWithUser(userModel))
     }
-    
+
     private func showChatFromInboxMessage(userModel: UserModel?) {
         router.push(.chatFromInbox(userModel))
     }

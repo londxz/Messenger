@@ -9,7 +9,7 @@ import SwiftUI
 
 struct InboxRowView: View {
     let message: MessageModel
-    
+
     var body: some View {
         HStack(alignment: .top, spacing: 12) {
             ProfileImageView(userModel: message.userModel, size: .medium)
@@ -22,7 +22,7 @@ struct InboxRowView: View {
                     .foregroundStyle(.gray)
                     .lineLimit(2)
             }
-            
+
             Spacer()
 
             HStack {

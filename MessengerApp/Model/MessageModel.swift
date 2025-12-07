@@ -21,7 +21,7 @@ struct MessageModel: Identifiable, Hashable, Codable {
     var id: String {
         messageId ?? UUID().uuidString
     }
-    
+
     var chatPartner: String {
         fromId == Auth.auth().currentUser?.uid ? toId : fromId
     }
@@ -29,7 +29,7 @@ struct MessageModel: Identifiable, Hashable, Codable {
     var isFromCurrentUser: Bool {
         Auth.auth().currentUser?.uid == fromId
     }
-    
+
     var timestampString: String {
         timestamp.dateValue().timestampString()
     }

@@ -30,7 +30,7 @@ struct InboxView: View {
                 ActiveUsersView()
                     .frame(height: 100)
                     .listRowSeparator(.hidden)
-                
+
                 ForEach(viewModel.recentMessages) { message in
                     Button {
                         onInboxMessageTap(message.userModel)
