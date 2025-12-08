@@ -45,5 +45,8 @@ struct ActiveUsersView: View {
                 }
             }
         }
+        .task {
+            await viewModel.fetchActiveUsers()
+        }
     }
 }
