@@ -11,14 +11,14 @@ import Foundation
 class ActiveUsersViewModel: ObservableObject {
     @Published var users = [UserModel]()
 
-    init() {
-        Task { try await fetchActiveUsers() }
-    }
-
     @MainActor
-    private func fetchActiveUsers() async throws {
+    func fetchActiveUsers() async {
         guard let currentUserUid = Auth.auth().currentUser?.uid else { return }
-        let users = try await UserService.shared.fetchAllUsers(limit: 5)
-        self.users = users.filter { $0.id != currentUserUid }
+        do {
+            let users = try await UserService.shared.fetchAllUsers(limit: 5)
+            self.users = users.filter { $0.id != currentUserUid }
+        } catch {
+            print("ERROR in ActiveUsersViewModel.fetchActiveUsers: \(error.localizedDescription)")
+        }
     }
 }

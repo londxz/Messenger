@@ -17,6 +17,10 @@ class InboxViewModel: ObservableObject {
     private let service = InboxService()
     private var cancellables = Set<AnyCancellable>()
 
+    var onShowProfileTap: ((UserModel) -> Void)?
+    var onShowNewMessageTap: (() -> Void)?
+    var onShowChatTap: ((UserModel) -> Void)?
+
     init() {
         setSubscribers()
         service.observeRecentMessages()
@@ -60,5 +64,33 @@ class InboxViewModel: ObservableObject {
 
     private func sortMessages() {
         recentMessages.sort { $0.timestamp.dateValue() > $1.timestamp.dateValue() }
+    }
+
+    // MARK: - Navigation
+
+    func didTapInboxMessage(message: MessageModel) {
+        guard let userModel = message.userModel else {
+            print("ERROR in InboxViewModel.didTapInboxMessage: userModel == nil")
+            return
+        }
+
+        onShowChatTap?(userModel)
+    }
+
+    func didTapShowProfile() {
+        guard let userModel = user else {
+            print("ERROR in InboxViewModel.didTapShowProfile: userModel == nil")
+            return
+        }
+
+        onShowProfileTap?(userModel)
+    }
+
+    func didTapShowNewMessage() {
+        onShowNewMessageTap?()
+    }
+
+    func didTapActiveUser(userModel: UserModel) {
+        onShowChatTap?(userModel)
     }
 }
