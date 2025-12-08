@@ -30,7 +30,7 @@ class UserService {
 
     func fetchAllUsers(limit: Int? = nil) async throws -> [UserModel] {
         let query = FirebaseConstants.UsersCollection
-        
+
         if let limit = limit {
             query.limit(to: limit)
         }

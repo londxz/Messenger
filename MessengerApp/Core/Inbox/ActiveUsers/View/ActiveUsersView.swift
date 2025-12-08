@@ -9,13 +9,13 @@ import SwiftUI
 
 struct ActiveUsersView: View {
     @StateObject private var viewModel = ActiveUsersViewModel()
-    
+
     private let onShowChatTap: (UserModel) -> Void
-    
+
     init(onShowChatTap: @escaping (UserModel) -> Void) {
         self.onShowChatTap = onShowChatTap
     }
-    
+
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 32) {

@@ -15,11 +15,11 @@ struct UserModel: Identifiable, Hashable, Codable {
     var profileImageUrl: String?
 
     var id: String { uid ?? UUID().uuidString }
-    
+
     var name: String {
         let formatter = PersonNameComponentsFormatter()
         let name = formatter.personNameComponents(from: fullname)?.givenName ?? fullname
-        
+
         return name
     }
 }

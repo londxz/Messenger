@@ -79,7 +79,7 @@ final class MainCoordinator: ObservableObject {
     private func showChatFromInboxMessage(userModel: UserModel?) {
         router.push(.chatFromInbox(userModel))
     }
-    
+
     private func showChatFromActiveUsers(userModel: UserModel) {
         router.push(.chatFromActiveUsers(userModel))
     }
