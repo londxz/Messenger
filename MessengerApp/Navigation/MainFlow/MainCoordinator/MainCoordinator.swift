@@ -18,27 +18,16 @@ final class MainCoordinator: ObservableObject {
         self.router = router
         bindRouterUpdates()
     }
+    
+    // MARK: - Make Views
 
     @ViewBuilder
     func makeInboxView() -> some View {
-        InboxView(
-            onShowProfileTap: { [weak self] userModel in
-                self?.showProfile(userModel: userModel)
-            },
-            onShowNewMessageTap: { [weak self] in
-                self?.showNewMessage()
-            },
-            onInboxMessageTap: { [weak self] userModel in
-                self?.showChatFromInboxMessage(userModel: userModel)
-            },
-            onShowChatFromActiveUsersTap: { [weak self] userModel in
-                self?.showChatFromInboxMessage(userModel: userModel)
-            }
-        )
+        InboxView(viewModel: makeInboxViewModel())
     }
 
     @ViewBuilder
-    func makeProfileView(userModel: UserModel?) -> some View {
+    func makeProfileView(userModel: UserModel) -> some View {
         ProfileView(userModel: userModel)
     }
 
@@ -54,36 +43,57 @@ final class MainCoordinator: ObservableObject {
                 self?.closeFullScreen()
             },
             onSendMessageTap: { [weak self] userModel in
-                self?.showChatFromNewMessage(userModel: userModel)
+                self?.showChat(userModel: userModel)
             }
         )
     }
+    
+    // MARK: - Make ViewModels
+    
+    private func makeInboxViewModel() -> InboxViewModel {
+        let viewModel = InboxViewModel()
+        
+        viewModel.onShowProfileTap = { [weak self] userModel in
+            self?.showProfile(userModel: userModel)
+        }
+        
+        viewModel.onShowNewMessageTap = { [weak self] in
+            self?.showNewMessage()
+        }
+        
+        viewModel.onShowChatTap = { [weak self] userModel in
+            self?.showChat(userModel: userModel)
+        }
 
-    private func showProfile(userModel: UserModel?) {
+        return viewModel
+    }
+    
+    // MARK: - Use MainRouter
+
+    private func showProfile(userModel: UserModel) {
         router.push(.profile(userModel))
     }
 
     private func showNewMessage() {
         router.presentFullScreen(.newMessage)
     }
-
+    
+    private func showChat(userModel: UserModel) {
+        if router.fullScreenRoute == .newMessage {
+            closeFullScreen()
+        }
+        
+        if router.path.last == .chat(userModel) {
+            return
+        }
+        
+        router.push(.chat(userModel))
+    }
+    
     private func closeFullScreen() {
         router.dismissFullScreen()
     }
-
-    private func showChatFromNewMessage(userModel: UserModel) {
-        closeFullScreen()
-        router.push(.chatWithUser(userModel))
-    }
-
-    private func showChatFromInboxMessage(userModel: UserModel?) {
-        router.push(.chatFromInbox(userModel))
-    }
-
-    private func showChatFromActiveUsers(userModel: UserModel) {
-        router.push(.chatFromActiveUsers(userModel))
-    }
-
+    
     private func bindRouterUpdates() {
         router.objectWillChange
             .sink { [weak self] _ in

@@ -21,11 +21,7 @@ struct MainCoordinatorView: View {
                     switch route {
                     case let .profile(userModel):
                         coordinator.makeProfileView(userModel: userModel)
-                    case let .chatWithUser(userModel):
-                        coordinator.makeChatView(userModel: userModel)
-                    case let .chatFromInbox(userModel):
-                        coordinator.makeChatView(userModel: userModel ?? UserModel.mockUser)
-                    case let .chatFromActiveUsers(userModel):
+                    case let .chat(userModel):
                         coordinator.makeChatView(userModel: userModel)
                     }
                 }

@@ -10,10 +10,10 @@ import SwiftUI
 struct ActiveUsersView: View {
     @StateObject private var viewModel = ActiveUsersViewModel()
 
-    private let onShowChatTap: (UserModel) -> Void
+    private let onActiveUserTap: (UserModel) -> Void
 
-    init(onShowChatTap: @escaping (UserModel) -> Void) {
-        self.onShowChatTap = onShowChatTap
+    init(onActiveUserTap: @escaping (UserModel) -> Void) {
+        self.onActiveUserTap = onActiveUserTap
     }
 
     var body: some View {
@@ -23,7 +23,7 @@ struct ActiveUsersView: View {
                     VStack {
                         ZStack(alignment: .bottomTrailing) {
                             Button {
-                                onShowChatTap(user)
+                                onActiveUserTap(user)
                             } label: {
                                 ProfileImageView(userModel: user, size: .large)
                             }
