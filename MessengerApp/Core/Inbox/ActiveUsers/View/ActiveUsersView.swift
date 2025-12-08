@@ -8,16 +8,24 @@
 import SwiftUI
 
 struct ActiveUsersView: View {
+    @StateObject private var viewModel = ActiveUsersViewModel()
+    
+    private let onShowChatTap: (UserModel) -> Void
+    
+    init(onShowChatTap: @escaping (UserModel) -> Void) {
+        self.onShowChatTap = onShowChatTap
+    }
+    
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 32) {
-                ForEach(0 ... 10, id: \.self) { _ in
+                ForEach(viewModel.users) { user in
                     VStack {
                         ZStack(alignment: .bottomTrailing) {
                             Button {
-                                print("user clicked")
+                                onShowChatTap(user)
                             } label: {
-                                ProfileImageView(userModel: UserModel.mockUser, size: .large)
+                                ProfileImageView(userModel: user, size: .large)
                             }
 
                             ZStack {
@@ -30,7 +38,7 @@ struct ActiveUsersView: View {
                             }
                         }
 
-                        Text("Tom")
+                        Text(user.name)
                             .font(.subheadline)
                             .foregroundStyle(.gray)
                     }
@@ -38,8 +46,4 @@ struct ActiveUsersView: View {
             }
         }
     }
-}
-
-#Preview {
-    ActiveUsersView()
 }

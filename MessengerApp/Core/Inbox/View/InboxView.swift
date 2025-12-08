@@ -13,21 +13,24 @@ struct InboxView: View {
     private let onShowProfileTap: (UserModel?) -> Void
     private let onShowNewMessageTap: () -> Void
     private let onInboxMessageTap: (UserModel?) -> Void
+    private let onShowChatFromActiveUsersTap: (UserModel) -> Void
 
     init(
         onShowProfileTap: @escaping (UserModel?) -> Void,
         onShowNewMessageTap: @escaping () -> Void,
-        onInboxMessageTap: @escaping (UserModel?) -> Void
+        onInboxMessageTap: @escaping (UserModel?) -> Void,
+        onShowChatFromActiveUsersTap: @escaping (UserModel) -> Void
     ) {
         self.onShowProfileTap = onShowProfileTap
         self.onShowNewMessageTap = onShowNewMessageTap
         self.onInboxMessageTap = onInboxMessageTap
+        self.onShowChatFromActiveUsersTap = onShowChatFromActiveUsersTap
     }
 
     var body: some View {
         GeometryReader { geo in
             List {
-                ActiveUsersView()
+                ActiveUsersView(onShowChatTap: onShowChatFromActiveUsersTap)
                     .frame(height: 100)
                     .listRowSeparator(.hidden)
 

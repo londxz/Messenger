@@ -30,6 +30,9 @@ final class MainCoordinator: ObservableObject {
             },
             onInboxMessageTap: { [weak self] userModel in
                 self?.showChatFromInboxMessage(userModel: userModel)
+            },
+            onShowChatFromActiveUsersTap: { [weak self] userModel in
+                self?.showChatFromInboxMessage(userModel: userModel)
             }
         )
     }
@@ -75,6 +78,10 @@ final class MainCoordinator: ObservableObject {
 
     private func showChatFromInboxMessage(userModel: UserModel?) {
         router.push(.chatFromInbox(userModel))
+    }
+    
+    private func showChatFromActiveUsers(userModel: UserModel) {
+        router.push(.chatFromActiveUsers(userModel))
     }
 
     private func bindRouterUpdates() {

@@ -28,8 +28,13 @@ class UserService {
         }
     }
 
-    func fetchAllUsers() async throws -> [UserModel] {
-        let querySnapshot = try await FirebaseConstants.UsersCollection.getDocuments()
+    func fetchAllUsers(limit: Int? = nil) async throws -> [UserModel] {
+        let query = FirebaseConstants.UsersCollection
+        
+        if let limit = limit {
+            query.limit(to: limit)
+        }
+        let querySnapshot = try await query.getDocuments()
         return querySnapshot.documents.compactMap { try? $0.data(as: UserModel.self) }
     }
 
