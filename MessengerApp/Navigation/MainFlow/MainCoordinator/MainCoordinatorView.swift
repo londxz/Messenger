@@ -25,6 +25,8 @@ struct MainCoordinatorView: View {
                         coordinator.makeChatView(userModel: userModel)
                     case let .chatFromInbox(userModel):
                         coordinator.makeChatView(userModel: userModel ?? UserModel.mockUser)
+                    case let .chatFromActiveUsers(userModel):
+                        coordinator.makeChatView(userModel: userModel)
                     }
                 }
                 .fullScreenCover(item: $coordinator.router.fullScreenRoute) { route in

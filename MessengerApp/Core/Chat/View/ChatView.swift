@@ -20,28 +20,17 @@ struct ChatView: View {
         VStack {
             GeometryReader { geo in
                 ScrollView {
-                    VStack {
-                        ProfileImageView(userModel: userModel, size: .xLarge)
-
-                        VStack(spacing: 4) {
-                            Text(userModel.fullname)
-                                .font(.title3)
-                                .fontWeight(.semibold)
-
-                            Text("Messenger")
-                                .font(.footnote)
-                                .foregroundStyle(.gray)
-                        }
-                    }
-
                     if !viewModel.messages.isEmpty {
-                        ForEach(viewModel.messages) { message in
-                            ChatMessageCell(
-                                messageModel: message,
-                                isFromCurrentUser: message.isFromCurrentUser,
-                                contentWidth: geo.size.width
-                            )
+                        LazyVStack {
+                            ForEach(viewModel.messages) { message in
+                                ChatMessageCell(
+                                    messageModel: message,
+                                    isFromCurrentUser: message.isFromCurrentUser,
+                                    contentWidth: geo.size.width
+                                )
+                            }
                         }
+                        .padding(.top, 16)
                     }
                 }
                 .frame(width: geo.size.width)
@@ -67,5 +56,13 @@ struct ChatView: View {
             .padding(.horizontal)
             .padding(.vertical, 8)
         }
+        .navigationTitle(userModel.fullname)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                ProfileImageView(userModel: userModel, size: .xSmall)
+            }
+        }
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarTitleDisplayMode(.inline)
     }
 }

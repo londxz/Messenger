@@ -11,6 +11,7 @@ enum MainRoute: Hashable {
     case profile(UserModel?)
     case chatWithUser(UserModel)
     case chatFromInbox(UserModel?)
+    case chatFromActiveUsers(UserModel)
 }
 
 enum FullScreenRoute: Identifiable {
