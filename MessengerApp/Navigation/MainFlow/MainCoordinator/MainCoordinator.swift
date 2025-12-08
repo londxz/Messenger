@@ -18,7 +18,7 @@ final class MainCoordinator: ObservableObject {
         self.router = router
         bindRouterUpdates()
     }
-    
+
     // MARK: - Make Views
 
     @ViewBuilder
@@ -47,27 +47,27 @@ final class MainCoordinator: ObservableObject {
             }
         )
     }
-    
+
     // MARK: - Make ViewModels
-    
+
     private func makeInboxViewModel() -> InboxViewModel {
         let viewModel = InboxViewModel()
-        
+
         viewModel.onShowProfileTap = { [weak self] userModel in
             self?.showProfile(userModel: userModel)
         }
-        
+
         viewModel.onShowNewMessageTap = { [weak self] in
             self?.showNewMessage()
         }
-        
+
         viewModel.onShowChatTap = { [weak self] userModel in
             self?.showChat(userModel: userModel)
         }
 
         return viewModel
     }
-    
+
     // MARK: - Use MainRouter
 
     private func showProfile(userModel: UserModel) {
@@ -77,23 +77,23 @@ final class MainCoordinator: ObservableObject {
     private func showNewMessage() {
         router.presentFullScreen(.newMessage)
     }
-    
+
     private func showChat(userModel: UserModel) {
         if router.fullScreenRoute == .newMessage {
             closeFullScreen()
         }
-        
+
         if router.path.last == .chat(userModel) {
             return
         }
-        
+
         router.push(.chat(userModel))
     }
-    
+
     private func closeFullScreen() {
         router.dismissFullScreen()
     }
-    
+
     private func bindRouterUpdates() {
         router.objectWillChange
             .sink { [weak self] _ in

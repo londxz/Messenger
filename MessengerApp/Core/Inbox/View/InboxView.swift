@@ -9,7 +9,7 @@ import SwiftUI
 
 struct InboxView: View {
     @StateObject private var viewModel = InboxViewModel()
-    
+
     init(viewModel: InboxViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
@@ -20,8 +20,8 @@ struct InboxView: View {
                 ActiveUsersView(onActiveUserTap: { userModel in
                     viewModel.didTapActiveUser(userModel: userModel)
                 })
-                    .frame(height: 100)
-                    .listRowSeparator(.hidden)
+                .frame(height: 100)
+                .listRowSeparator(.hidden)
 
                 ForEach(viewModel.recentMessages) { message in
                     Button {
