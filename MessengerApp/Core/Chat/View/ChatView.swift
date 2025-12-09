@@ -46,7 +46,6 @@ struct ChatView: View {
                     .textInputAutocapitalization(.none)
 
                 Button {
-                    guard !viewModel.messageText.isEmpty else { return }
                     viewModel.sendMessage()
                 } label: {
                     Text("Send")

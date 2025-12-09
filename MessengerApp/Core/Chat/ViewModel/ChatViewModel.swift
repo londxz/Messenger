@@ -24,6 +24,8 @@ class ChatViewModel: ObservableObject {
     }
 
     func sendMessage() {
+        messageText = messageText.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !messageText.isEmpty else { return }
         service.sendMessage(messageText)
         messageText = ""
     }
