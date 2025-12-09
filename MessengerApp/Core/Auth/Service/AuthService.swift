@@ -17,9 +17,6 @@ class AuthService {
         userSession = Auth.auth().currentUser
         fetchCurrentUser()
         print("user session id: \(userSession?.uid ?? "nil")")
-        Task {
-            _ = try await UserService.shared.fetchAllUsers()
-        }
     }
 
     func loginUser(email: String, password: String) async throws {
