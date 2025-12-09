@@ -1,5 +1,5 @@
 //
-//  KeyboardExtension.swift
+//  View+Keyboard.swift
 //  MessengerApp
 //
 //  Created by Родион Холодов on 09.12.2025.

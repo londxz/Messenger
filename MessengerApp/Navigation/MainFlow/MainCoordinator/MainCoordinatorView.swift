@@ -15,7 +15,6 @@ struct MainCoordinatorView: View {
     }
 
     var body: some View {
-        
         NavigationStack(path: coordinator.pathBinding) {
             coordinator.makeInboxView()
                 .navigationDestination(for: MainRoute.self) { route in

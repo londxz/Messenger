@@ -13,7 +13,7 @@ final class MainCoordinator: ObservableObject {
     var router: MainRouter
 
     private var cancellables = Set<AnyCancellable>()
-    
+
     var pathBinding: Binding<[MainRoute]> {
         Binding(
             get: { [weak self] in
@@ -22,7 +22,7 @@ final class MainCoordinator: ObservableObject {
             set: { [weak self] newPath in
                 guard let self else { return }
                 guard newPath.count != self.router.path.count else { return }
-                
+
                 DispatchQueue.main.async { [weak self] in
                     self?.router.path = newPath
                 }
