@@ -29,7 +29,6 @@ struct InboxView: View {
                     } label: {
                         InboxRowView(message: message)
                     }
-                    .disabled(message.userModel == nil)
                 }
             }
             .listStyle(PlainListStyle())

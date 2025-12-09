@@ -12,7 +12,13 @@ class RegisterViewModel: ObservableObject {
     @Published var fullname: String = ""
     @Published var password: String = ""
 
+    var onGoBackToLoginTap: (() -> Void)?
+
     func createUser() async throws {
         try await AuthService.shared.createUser(email: email, fullname: fullname, password: password)
+    }
+
+    func didTapBackToLogin() {
+        onGoBackToLoginTap?()
     }
 }

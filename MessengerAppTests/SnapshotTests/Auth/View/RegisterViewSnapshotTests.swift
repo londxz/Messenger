@@ -15,7 +15,7 @@ final class RegisterViewSnapshotTests: BaseSnapshotTest<RegisterView> {
 
     func test_iPhone16Pro_Light() {
         verifySnapshot(
-            content: { RegisterView(onGoBackToLoginTap: {}) },
+            content: { RegisterView() },
             style: .light,
             device: .iPhone16Pro
         )
@@ -23,7 +23,7 @@ final class RegisterViewSnapshotTests: BaseSnapshotTest<RegisterView> {
 
     func test_iPhone16Pro_Dark() {
         verifySnapshot(
-            content: { RegisterView(onGoBackToLoginTap: {}) },
+            content: { RegisterView() },
             style: .dark,
             device: .iPhone16Pro
         )
@@ -31,7 +31,7 @@ final class RegisterViewSnapshotTests: BaseSnapshotTest<RegisterView> {
 
     func test_iPhoneSE_Light() {
         verifySnapshot(
-            content: { RegisterView(onGoBackToLoginTap: {}) },
+            content: { RegisterView() },
             style: .light,
             device: .iPhoneSe3dGen
         )
@@ -39,7 +39,7 @@ final class RegisterViewSnapshotTests: BaseSnapshotTest<RegisterView> {
 
     func test_iPhoneSE_Dark() {
         verifySnapshot(
-            content: { RegisterView(onGoBackToLoginTap: {}) },
+            content: { RegisterView() },
             style: .dark,
             device: .iPhoneSe3dGen
         )
@@ -50,7 +50,7 @@ final class RegisterViewSnapshotTests: BaseSnapshotTest<RegisterView> {
     // iPhone16Pro
     func test_iPhone16Pro_DynamicTypeXL() {
         verifySnapshot(
-            content: { RegisterView(onGoBackToLoginTap: {}) },
+            content: { RegisterView() },
             style: .light,
             sizeCategory: .extraLarge,
             device: .iPhone16Pro,
@@ -60,7 +60,7 @@ final class RegisterViewSnapshotTests: BaseSnapshotTest<RegisterView> {
 
     func test_iPhone16Pro_DynamicTypeXXXL() {
         verifySnapshot(
-            content: { RegisterView(onGoBackToLoginTap: {}) },
+            content: { RegisterView() },
             style: .light,
             sizeCategory: .extraExtraExtraLarge,
             device: .iPhone16Pro,
@@ -70,7 +70,7 @@ final class RegisterViewSnapshotTests: BaseSnapshotTest<RegisterView> {
 
     func test_iPhone16Pro_DynamicTypeAXL() {
         verifySnapshot(
-            content: { RegisterView(onGoBackToLoginTap: {}) },
+            content: { RegisterView() },
             style: .light,
             sizeCategory: .accessibilityExtraLarge,
             device: .iPhone16Pro,
@@ -80,7 +80,7 @@ final class RegisterViewSnapshotTests: BaseSnapshotTest<RegisterView> {
 
     func test_iPhone16Pro_DynamicTypeAXXXL() {
         verifySnapshot(
-            content: { RegisterView(onGoBackToLoginTap: {}) },
+            content: { RegisterView() },
             style: .light,
             sizeCategory: .accessibilityExtraExtraExtraLarge,
             device: .iPhone16Pro,
@@ -91,7 +91,7 @@ final class RegisterViewSnapshotTests: BaseSnapshotTest<RegisterView> {
     // iPhoneSE3dGen
     func test_iPhoneSE_DynamicTypeXL() {
         verifySnapshot(
-            content: { RegisterView(onGoBackToLoginTap: {}) },
+            content: { RegisterView() },
             style: .light,
             sizeCategory: .extraLarge,
             device: .iPhoneSe3dGen,
@@ -101,7 +101,7 @@ final class RegisterViewSnapshotTests: BaseSnapshotTest<RegisterView> {
 
     func test_iPhoneSE_DynamicTypeXXXL() {
         verifySnapshot(
-            content: { RegisterView(onGoBackToLoginTap: {}) },
+            content: { RegisterView() },
             style: .light,
             sizeCategory: .extraExtraExtraLarge,
             device: .iPhoneSe3dGen,
@@ -111,7 +111,7 @@ final class RegisterViewSnapshotTests: BaseSnapshotTest<RegisterView> {
 
     func test_iPhoneSE_DynamicTypeAXL() {
         verifySnapshot(
-            content: { RegisterView(onGoBackToLoginTap: {}) },
+            content: { RegisterView() },
             style: .light,
             sizeCategory: .accessibilityExtraLarge,
             device: .iPhoneSe3dGen,
@@ -121,7 +121,7 @@ final class RegisterViewSnapshotTests: BaseSnapshotTest<RegisterView> {
 
     func test_iPhoneSE_DynamicTypeAXXXL() {
         verifySnapshot(
-            content: { RegisterView(onGoBackToLoginTap: {}) },
+            content: { RegisterView() },
             style: .light,
             sizeCategory: .accessibilityExtraExtraExtraLarge,
             device: .iPhoneSe3dGen,

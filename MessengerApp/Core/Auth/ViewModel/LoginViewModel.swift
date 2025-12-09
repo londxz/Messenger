@@ -11,7 +11,13 @@ class LoginViewModel: ObservableObject {
     @Published var email: String = ""
     @Published var password: String = ""
 
+    var onRegistrationTap: (() -> Void)?
+
     func loginUser() async throws {
         try await AuthService.shared.loginUser(email: email, password: password)
+    }
+
+    func didTapRegistration() {
+        onRegistrationTap?()
     }
 }
