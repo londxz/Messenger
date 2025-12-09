@@ -17,10 +17,11 @@ struct LoginView: View {
     var body: some View {
         ViewThatFits(in: .vertical) {
             loginView
-            ScrollView { loginView }
+            ScrollView { loginView }.scrollDismissesKeyboard(.interactively)
         }
         .padding(.horizontal, 28)
         .ignoresSafeArea(.keyboard, edges: .bottom)
+        .onTapGesture { hideKeyboard() }
     }
 
     @ViewBuilder

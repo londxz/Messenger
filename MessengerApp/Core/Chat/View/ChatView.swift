@@ -38,6 +38,7 @@ struct ChatView: View {
                 .rotationEffect(Angle(degrees: 180))
                 .scaleEffect(x: -1.0, y: 1.0)
                 .frame(width: geo.size.width)
+                .scrollDismissesKeyboard(.interactively)
             }
 
             HStack(alignment: .bottom, spacing: 0) {
@@ -67,5 +68,6 @@ struct ChatView: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarTitleDisplayMode(.inline)
+        .onTapGesture { hideKeyboard() }
     }
 }

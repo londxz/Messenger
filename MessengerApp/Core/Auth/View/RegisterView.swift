@@ -17,11 +17,12 @@ struct RegisterView: View {
     var body: some View {
         ViewThatFits(in: .vertical) {
             registerView
-            ScrollView { registerView }
+            ScrollView { registerView }.scrollDismissesKeyboard(.interactively)
         }
         .padding(.horizontal, 28)
         .navigationBarBackButtonHidden()
         .ignoresSafeArea(.keyboard, edges: .bottom)
+        .onTapGesture { hideKeyboard() }
     }
 
     @ViewBuilder
