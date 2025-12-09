@@ -22,18 +22,23 @@ struct ChatView: View {
                 ScrollView {
                     if !viewModel.messages.isEmpty {
                         LazyVStack {
-                            ForEach(viewModel.messages) { message in
+                            ForEach(viewModel.messages.reversed()) { message in
                                 ChatMessageCell(
                                     messageModel: message,
                                     isFromCurrentUser: message.isFromCurrentUser,
                                     contentWidth: geo.size.width
                                 )
+                                .rotationEffect(Angle(degrees: 180))
+                                .scaleEffect(x: -1.0, y: 1.0)
                             }
                         }
-                        .padding(.top, 16)
+                        .padding(.bottom, 16)
                     }
                 }
+                .rotationEffect(Angle(degrees: 180))
+                .scaleEffect(x: -1.0, y: 1.0)
                 .frame(width: geo.size.width)
+                .scrollDismissesKeyboard(.interactively)
             }
 
             HStack(alignment: .bottom, spacing: 0) {
@@ -42,7 +47,6 @@ struct ChatView: View {
                     .textInputAutocapitalization(.none)
 
                 Button {
-                    guard !viewModel.messageText.isEmpty else { return }
                     viewModel.sendMessage()
                 } label: {
                     Text("Send")
@@ -64,5 +68,6 @@ struct ChatView: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarTitleDisplayMode(.inline)
+        .onTapGesture { hideKeyboard() }
     }
 }

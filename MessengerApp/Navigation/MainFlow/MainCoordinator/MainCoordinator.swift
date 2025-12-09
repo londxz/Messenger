@@ -14,6 +14,22 @@ final class MainCoordinator: ObservableObject {
 
     private var cancellables = Set<AnyCancellable>()
 
+    var pathBinding: Binding<[MainRoute]> {
+        Binding(
+            get: { [weak self] in
+                self?.router.path ?? []
+            },
+            set: { [weak self] newPath in
+                guard let self else { return }
+                guard newPath.count != self.router.path.count else { return }
+
+                DispatchQueue.main.async { [weak self] in
+                    self?.router.path = newPath
+                }
+            }
+        )
+    }
+
     init(router: MainRouter = MainRouter()) {
         self.router = router
         bindRouterUpdates()

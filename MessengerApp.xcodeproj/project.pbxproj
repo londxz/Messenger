@@ -16,6 +16,7 @@
 		3C1E87042EE4C40800E0E3DC /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1E87032EE4C40500E0E3DC /* ChatService.swift */; };
 		3C1E87072EE4C63400E0E3DC /* FirebaseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1E87062EE4C63100E0E3DC /* FirebaseConstants.swift */; };
 		3C1E870A2EE5989800E0E3DC /* InboxService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1E87092EE5989300E0E3DC /* InboxService.swift */; };
+		3C2268E12EE811E50030946E /* View+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2268E02EE811D40030946E /* View+Keyboard.swift */; };
 		3C2F09F52EC860D30064FEA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C2F09F12EC860D30064FEA4 /* Assets.xcassets */; };
 		3C2F09F72EC860D30064FEA4 /* MessengerAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2F09F32EC860D30064FEA4 /* MessengerAppApp.swift */; };
 		3C2F09FA2EC860D60064FEA4 /* MessengerAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2F09F82EC860D60064FEA4 /* MessengerAppTests.swift */; };
@@ -83,6 +84,7 @@
 		3C1E87032EE4C40500E0E3DC /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
 		3C1E87062EE4C63100E0E3DC /* FirebaseConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseConstants.swift; sourceTree = "<group>"; };
 		3C1E87092EE5989300E0E3DC /* InboxService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxService.swift; sourceTree = "<group>"; };
+		3C2268E02EE811D40030946E /* View+Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Keyboard.swift"; sourceTree = "<group>"; };
 		3C2F09C72EC860B80064FEA4 /* MessengerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MessengerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C2F09D42EC860B90064FEA4 /* MessengerAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MessengerAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C2F09F12EC860D30064FEA4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 		3C2F0A042EC861100064FEA4 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				3C2268E02EE811D40030946E /* View+Keyboard.swift */,
 				3CEF73922EE6082C0071F905 /* DateExtension.swift */,
 			);
 			path = Extension;
@@ -699,6 +702,7 @@
 			files = (
 				3CC2D2972ED1CD7B005327B9 /* InboxRowView.swift in Sources */,
 				3CF092BD2EDD948000621B74 /* RegisterViewModel.swift in Sources */,
+				3C2268E12EE811E50030946E /* View+Keyboard.swift in Sources */,
 				3CF092B92EDD943200621B74 /* AuthService.swift in Sources */,
 				3CE989002EE6EF8A0058FA0E /* ActiveUsersViewModel.swift in Sources */,
 				3CA7F84F2EDDC96500BD0470 /* AuthCoordinatorView.swift in Sources */,
