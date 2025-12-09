@@ -9,15 +9,9 @@ import SwiftUI
 
 struct RegisterView: View {
     @StateObject private var viewModel = RegisterViewModel()
-
-    private let onGoBackToLoginTap: () -> Void
-
-    init(
-        viewModel: RegisterViewModel = RegisterViewModel(),
-        onGoBackToLoginTap: @escaping () -> Void
-    ) {
+    
+    init(viewModel: RegisterViewModel = RegisterViewModel()) {
         _viewModel = StateObject(wrappedValue: viewModel)
-        self.onGoBackToLoginTap = onGoBackToLoginTap
     }
 
     var body: some View {
@@ -77,7 +71,7 @@ struct RegisterView: View {
             Divider()
 
             Button {
-                onGoBackToLoginTap()
+                viewModel.didTapBackToLogin()
             } label: {
                 HStack {
                     Text("Already registered?")

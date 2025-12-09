@@ -10,14 +10,8 @@ import SwiftUI
 struct LoginView: View {
     @StateObject private var viewModel = LoginViewModel()
 
-    private let onRegistrationTap: () -> Void
-
-    init(
-        viewModel: LoginViewModel = LoginViewModel(),
-        onRegistrationTap: @escaping () -> Void
-    ) {
+    init(viewModel: LoginViewModel = LoginViewModel()) {
         _viewModel = StateObject(wrappedValue: viewModel)
-        self.onRegistrationTap = onRegistrationTap
     }
 
     var body: some View {
@@ -108,7 +102,7 @@ struct LoginView: View {
             Divider()
 
             Button {
-                onRegistrationTap()
+                viewModel.didTapRegistration()
             } label: {
                 HStack {
                     Text("Don't have an account?")

@@ -18,20 +18,42 @@ final class AuthCoordinator: ObservableObject {
         self.router = router
         bindRouterUpdates()
     }
-
+    
+    // MARK: - Make Views
+    
     @ViewBuilder
     func makeLoginView() -> some View {
-        LoginView { [weak self] in
-            self?.pushRegisterationView()
-        }
+        LoginView(viewModel: makeLoginViewModel())
     }
 
     @ViewBuilder
     func makeRegisterView() -> some View {
-        RegisterView { [weak self] in
+        RegisterView(viewModel: makeRegisterViewModel())
+    }
+    
+    // MARK: - Make ViewModels
+    
+    func makeLoginViewModel() -> LoginViewModel {
+        let viewModel = LoginViewModel()
+        
+        viewModel.onRegistrationTap = { [weak self] in
+            self?.pushRegisterationView()
+        }
+        
+        return viewModel
+    }
+    
+    func makeRegisterViewModel() -> RegisterViewModel {
+        let viewModel = RegisterViewModel()
+        
+        viewModel.onGoBackToLoginTap = { [weak self] in
             self?.goBack()
         }
+        
+        return viewModel
     }
+    
+    // MARK: - Use AuthRouter
 
     private func pushRegisterationView() {
         router.push(.registration)
