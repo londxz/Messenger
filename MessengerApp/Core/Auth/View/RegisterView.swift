@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RegisterView: View {
     @StateObject private var viewModel = RegisterViewModel()
-    
+
     init(viewModel: RegisterViewModel = RegisterViewModel()) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
