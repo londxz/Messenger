@@ -13,6 +13,8 @@ import Foundation
 class InboxViewModel: ObservableObject {
     @Published var user: UserModel?
     @Published var recentMessages = [MessageModel]()
+    
+    let activeUsersViewModel = ActiveUsersViewModel()
 
     private let service = InboxService()
     private var cancellables = Set<AnyCancellable>()
@@ -23,6 +25,7 @@ class InboxViewModel: ObservableObject {
 
     init() {
         setSubscribers()
+        setupActiveUsersViewModel()
         service.observeRecentMessages()
     }
 
@@ -40,6 +43,12 @@ class InboxViewModel: ObservableObject {
                 self?.loadInitialChanges(changes: documentChanges)
             }
             .store(in: &cancellables)
+    }
+    
+    private func setupActiveUsersViewModel() {
+        activeUsersViewModel.onActiveUserTap = { [weak self] userModel in
+            self?.didTapActiveUserFromInbox(userModel: userModel)
+        }
     }
 
     private func loadInitialChanges(changes: [DocumentChange]) {
@@ -76,6 +85,10 @@ class InboxViewModel: ObservableObject {
 
         onShowChatTap?(userModel)
     }
+    
+    func didTapActiveUserFromInbox(userModel: UserModel) {
+        onShowChatTap?(userModel)
+    }
 
     func didTapShowProfile() {
         guard let userModel = user else {
@@ -88,9 +101,5 @@ class InboxViewModel: ObservableObject {
 
     func didTapShowNewMessage() {
         onShowNewMessageTap?()
-    }
-
-    func didTapActiveUser(userModel: UserModel) {
-        onShowChatTap?(userModel)
     }
 }

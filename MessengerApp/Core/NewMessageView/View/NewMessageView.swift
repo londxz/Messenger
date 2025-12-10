@@ -9,16 +9,9 @@ import SwiftUI
 
 struct NewMessageView: View {
     @StateObject private var viewModel = NewMessageViewModel()
-
-    private let onGoBackTap: () -> Void
-    private let onSendMessageTap: (UserModel) -> Void
-
-    init(
-        onGoBackTap: @escaping () -> Void,
-        onSendMessageTap: @escaping (UserModel) -> Void
-    ) {
-        self.onGoBackTap = onGoBackTap
-        self.onSendMessageTap = onSendMessageTap
+    
+    init(viewModel: NewMessageViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
     }
 
     var body: some View {
@@ -47,7 +40,7 @@ struct NewMessageView: View {
                         Spacer()
                     }
                     .padding(.leading)
-                    .onTapGesture { onSendMessageTap(user) }
+                    .onTapGesture { viewModel.didTapSendMessage(userModel: user) }
 
                     Divider()
                         .padding(.leading, 64)
@@ -59,7 +52,7 @@ struct NewMessageView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button("Cancel") {
-                        onGoBackTap()
+                        viewModel.didTapGoBack()
                     }
                 }
             }

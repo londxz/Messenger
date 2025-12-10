@@ -17,9 +17,7 @@ struct InboxView: View {
     var body: some View {
         GeometryReader { geo in
             List {
-                ActiveUsersView(onActiveUserTap: { userModel in
-                    viewModel.didTapActiveUser(userModel: userModel)
-                })
+                ActiveUsersView(viewModel: viewModel.activeUsersViewModel)
                 .frame(height: 100)
                 .listRowSeparator(.hidden)
 

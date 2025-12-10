@@ -41,6 +41,11 @@ final class MainCoordinator: ObservableObject {
     func makeInboxView() -> some View {
         InboxView(viewModel: makeInboxViewModel())
     }
+    
+    @ViewBuilder
+    func makeNewMessageView() -> some View {
+        NewMessageView(viewModel: makeNewMessageViewModel())
+    }
 
     @ViewBuilder
     func makeProfileView(userModel: UserModel) -> some View {
@@ -50,18 +55,6 @@ final class MainCoordinator: ObservableObject {
     @ViewBuilder
     func makeChatView(userModel: UserModel) -> some View {
         ChatView(userModel: userModel)
-    }
-
-    @ViewBuilder
-    func makeNewMessageView() -> some View {
-        NewMessageView(
-            onGoBackTap: { [weak self] in
-                self?.closeFullScreen()
-            },
-            onSendMessageTap: { [weak self] userModel in
-                self?.showChat(userModel: userModel)
-            }
-        )
     }
 
     // MARK: - Make ViewModels
@@ -81,6 +74,20 @@ final class MainCoordinator: ObservableObject {
             self?.showChat(userModel: userModel)
         }
 
+        return viewModel
+    }
+    
+    private func makeNewMessageViewModel() -> NewMessageViewModel {
+        let viewModel = NewMessageViewModel()
+        
+        viewModel.onGoBackTap = { [weak self] in
+            self?.closeFullScreen()
+        }
+        
+        viewModel.onSendMessageTap = { [weak self] userModel in
+            self?.showChat(userModel: userModel)
+        }
+        
         return viewModel
     }
 

@@ -8,13 +8,7 @@
 import SwiftUI
 
 struct ActiveUsersView: View {
-    @StateObject private var viewModel = ActiveUsersViewModel()
-
-    private let onActiveUserTap: (UserModel) -> Void
-
-    init(onActiveUserTap: @escaping (UserModel) -> Void) {
-        self.onActiveUserTap = onActiveUserTap
-    }
+    @ObservedObject var viewModel: ActiveUsersViewModel
 
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
@@ -23,7 +17,7 @@ struct ActiveUsersView: View {
                     VStack {
                         ZStack(alignment: .bottomTrailing) {
                             Button {
-                                onActiveUserTap(user)
+                                viewModel.didTapActiveUser(userModel: user)
                             } label: {
                                 ProfileImageView(userModel: user, size: .large)
                             }
