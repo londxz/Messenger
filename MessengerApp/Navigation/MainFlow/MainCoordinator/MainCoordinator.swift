@@ -41,7 +41,7 @@ final class MainCoordinator: ObservableObject {
     func makeInboxView() -> some View {
         InboxView(viewModel: makeInboxViewModel())
     }
-    
+
     @ViewBuilder
     func makeNewMessageView() -> some View {
         NewMessageView(viewModel: makeNewMessageViewModel())
@@ -76,18 +76,18 @@ final class MainCoordinator: ObservableObject {
 
         return viewModel
     }
-    
+
     private func makeNewMessageViewModel() -> NewMessageViewModel {
         let viewModel = NewMessageViewModel()
-        
+
         viewModel.onGoBackTap = { [weak self] in
             self?.closeFullScreen()
         }
-        
+
         viewModel.onSendMessageTap = { [weak self] userModel in
             self?.showChat(userModel: userModel)
         }
-        
+
         return viewModel
     }
 

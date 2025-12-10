@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NewMessageView: View {
     @StateObject private var viewModel = NewMessageViewModel()
-    
+
     init(viewModel: NewMessageViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }

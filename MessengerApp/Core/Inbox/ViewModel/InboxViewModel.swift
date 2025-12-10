@@ -13,7 +13,7 @@ import Foundation
 class InboxViewModel: ObservableObject {
     @Published var user: UserModel?
     @Published var recentMessages = [MessageModel]()
-    
+
     let activeUsersViewModel = ActiveUsersViewModel()
 
     private let service = InboxService()
@@ -44,7 +44,7 @@ class InboxViewModel: ObservableObject {
             }
             .store(in: &cancellables)
     }
-    
+
     private func setupActiveUsersViewModel() {
         activeUsersViewModel.onActiveUserTap = { [weak self] userModel in
             self?.didTapActiveUserFromInbox(userModel: userModel)
@@ -85,7 +85,7 @@ class InboxViewModel: ObservableObject {
 
         onShowChatTap?(userModel)
     }
-    
+
     func didTapActiveUserFromInbox(userModel: UserModel) {
         onShowChatTap?(userModel)
     }

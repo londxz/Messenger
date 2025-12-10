@@ -10,7 +10,7 @@ import Foundation
 
 class ActiveUsersViewModel: ObservableObject {
     @Published var users = [UserModel]()
-    
+
     var onActiveUserTap: ((UserModel) -> Void)?
 
     @MainActor
@@ -23,9 +23,9 @@ class ActiveUsersViewModel: ObservableObject {
             print("ERROR in ActiveUsersViewModel.fetchActiveUsers: \(error.localizedDescription)")
         }
     }
-  
+
     // MARK: - Navigation
-    
+
     func didTapActiveUser(userModel: UserModel) {
         onActiveUserTap?(userModel)
     }

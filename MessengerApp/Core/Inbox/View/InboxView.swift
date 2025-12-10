@@ -18,8 +18,8 @@ struct InboxView: View {
         GeometryReader { geo in
             List {
                 ActiveUsersView(viewModel: viewModel.activeUsersViewModel)
-                .frame(height: 100)
-                .listRowSeparator(.hidden)
+                    .frame(height: 100)
+                    .listRowSeparator(.hidden)
 
                 ForEach(viewModel.recentMessages) { message in
                     Button {
