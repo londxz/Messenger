@@ -385,6 +385,7 @@
 		3C9727492EE1A02200015E4C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3CEAEDB72ED1DFC9001F46D0 /* NewMessageView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -537,7 +538,6 @@
 			children = (
 				3C97274A2EE1A02800015E4C /* ViewModel */,
 				3C9727492EE1A02200015E4C /* View */,
-				3CEAEDB72ED1DFC9001F46D0 /* NewMessageView.swift */,
 			);
 			path = NewMessageView;
 			sourceTree = "<group>";

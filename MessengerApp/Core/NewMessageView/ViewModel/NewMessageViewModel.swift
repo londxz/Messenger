@@ -12,6 +12,9 @@ class NewMessageViewModel: ObservableObject {
     @Published var searchText = ""
     @Published var users = [UserModel]()
 
+    var onGoBackTap: (() -> Void)?
+    var onSendMessageTap: ((UserModel) -> Void)?
+
     init() {
         Task { try await fetchUsers() }
     }
@@ -21,5 +24,15 @@ class NewMessageViewModel: ObservableObject {
         guard let currentUserUid = Auth.auth().currentUser?.uid else { return }
         users = try await UserService.shared.fetchAllUsers()
         users = users.filter { $0.uid != currentUserUid }
+    }
+
+    // MARK: - Navigation
+
+    func didTapGoBack() {
+        onGoBackTap?()
+    }
+
+    func didTapSendMessage(userModel: UserModel) {
+        onSendMessageTap?(userModel)
     }
 }
