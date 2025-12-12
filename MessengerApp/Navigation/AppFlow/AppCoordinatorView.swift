@@ -8,17 +8,17 @@
 import SwiftUI
 
 struct AppCoordinatorView: View {
-    @StateObject private var appCoordinator = AppCoordinator()
+    @ObservedObject var appCoordinator: AppCoordinator
 
     var body: some View {
         Group {
             switch appCoordinator.appState {
             case .loading:
                 ProgressView()
-            case .authFlow:
-                AuthCoordinatorView(coordinator: appCoordinator.makeAuthCoordinator())
-            case .mainFlow:
-                MainCoordinatorView(coordinator: appCoordinator.makeMainCoordinator())
+            case let .authFlow(authCoordinator):
+                AuthCoordinatorView(coordinator: authCoordinator)
+            case let .mainFlow(mainCoordinator):
+                MainCoordinatorView(coordinator: mainCoordinator)
             }
         }
         .animation(.easeInOut, value: appCoordinator.appState)

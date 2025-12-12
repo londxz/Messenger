@@ -21,10 +21,11 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct MessengerAppApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    @StateObject private var appCoordinator = AppCoordinator(authService: AuthService.shared)
 
     var body: some Scene {
         WindowGroup {
-            AppCoordinatorView()
+            AppCoordinatorView(appCoordinator: appCoordinator)
         }
     }
 }

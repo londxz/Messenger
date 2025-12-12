@@ -7,11 +7,15 @@
 
 import FirebaseAuth
 import FirebaseFirestore
-import Foundation
+import Combine
 
-class AuthService {
+class AuthService: AuthServiceProtocol {
     static let shared = AuthService()
     @Published var userSession: FirebaseAuth.User?
+    
+    var userSessionPublisher: AnyPublisher<User?, Never> {
+        $userSession.eraseToAnyPublisher()
+    }
 
     init() {
         userSession = Auth.auth().currentUser

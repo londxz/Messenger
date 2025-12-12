@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct AuthCoordinatorView: View {
-    @StateObject private var coordinator: AuthCoordinator
-
+    @ObservedObject var coordinator: AuthCoordinator
+    
     init(coordinator: AuthCoordinator) {
-        _coordinator = StateObject(wrappedValue: coordinator)
+        self.coordinator = coordinator
     }
 
     var body: some View {
-        NavigationStack(path: $coordinator.router.path) {
+        NavigationStack(path: $coordinator.path) {
             coordinator.makeLoginView()
                 .navigationDestination(for: AuthRoute.self) { route in
                     switch route {

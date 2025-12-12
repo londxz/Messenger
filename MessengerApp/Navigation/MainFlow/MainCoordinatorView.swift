@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct MainCoordinatorView: View {
-    @StateObject private var coordinator: MainCoordinator
-
+    @ObservedObject var coordinator: MainCoordinator
+    
     init(coordinator: MainCoordinator) {
-        _coordinator = StateObject(wrappedValue: coordinator)
+        self.coordinator = coordinator
     }
 
     var body: some View {
@@ -25,7 +25,7 @@ struct MainCoordinatorView: View {
                         coordinator.makeChatView(userModel: userModel)
                     }
                 }
-                .fullScreenCover(item: $coordinator.router.fullScreenRoute) { route in
+                .fullScreenCover(item: $coordinator.fullScreenRoute) { route in
                     switch route {
                     case .newMessage:
                         coordinator.makeNewMessageView()

@@ -9,15 +9,8 @@ import Combine
 import Foundation
 import SwiftUI
 
-final class AuthCoordinator: ObservableObject {
-    var router: AuthRouter
-
+final class AuthCoordinator: BaseCoordinator<AuthRoute> {
     private var cancellables = Set<AnyCancellable>()
-
-    init(router: AuthRouter = AuthRouter()) {
-        self.router = router
-        bindRouterUpdates()
-    }
 
     // MARK: - Make Views
 
@@ -52,22 +45,12 @@ final class AuthCoordinator: ObservableObject {
 
         return viewModel
     }
-
-    // MARK: - Use AuthRouter
-
+    
     private func pushRegisterationView() {
-        router.push(.registration)
+        push(.registration)
     }
 
     private func goBack() {
-        router.pop()
-    }
-
-    private func bindRouterUpdates() {
-        router.objectWillChange
-            .sink { [weak self] _ in
-                self?.objectWillChange.send()
-            }
-            .store(in: &cancellables)
+        pop()
     }
 }
