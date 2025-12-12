@@ -11,13 +11,13 @@ enum AppState: Equatable {
     case mainFlow(MainCoordinator)
 
     static func == (lhs: AppState, rhs: AppState) -> Bool {
-        switch(lhs, rhs) {
+        switch (lhs, rhs) {
         case(.loading, .loading):
             return true
-        case let (.authFlow(l), .authFlow(r)):
-            return l === r
-        case let (.mainFlow(l), .mainFlow(r)):
-            return l === r
+        case let (.authFlow(left), .authFlow(right)):
+            return left === right
+        case let (.mainFlow(left), .mainFlow(right)):
+            return left === right
         default:
             return false
         }

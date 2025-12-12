@@ -45,7 +45,7 @@ final class AuthCoordinator: BaseCoordinator<AuthRoute> {
 
         return viewModel
     }
-    
+
     private func pushRegisterationView() {
         push(.registration)
     }

@@ -13,7 +13,7 @@ final class MainCoordinator: BaseCoordinator<MainRoute> {
     @Published var fullScreenRoute: FullScreenRoute?
 
     private var cancellables = Set<AnyCancellable>()
-    
+
     var pathBinding: Binding<[MainRoute]> {
         Binding(
             get: { [weak self] in
@@ -99,7 +99,7 @@ final class MainCoordinator: BaseCoordinator<MainRoute> {
         if fullScreenRoute == .newMessage {
             closeFullScreen()
         }
-        
+
         if path.last == .chat(userModel) {
             return
         }

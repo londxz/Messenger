@@ -5,14 +5,14 @@
 //  Created by Родион Холодов on 01.12.2025.
 //
 
+import Combine
 import FirebaseAuth
 import FirebaseFirestore
-import Combine
 
 class AuthService: AuthServiceProtocol {
     static let shared = AuthService()
     @Published var userSession: FirebaseAuth.User?
-    
+
     var userSessionPublisher: AnyPublisher<User?, Never> {
         $userSession.eraseToAnyPublisher()
     }

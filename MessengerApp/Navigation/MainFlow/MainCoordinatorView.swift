@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainCoordinatorView: View {
     @ObservedObject var coordinator: MainCoordinator
-    
+
     init(coordinator: MainCoordinator) {
         self.coordinator = coordinator
     }

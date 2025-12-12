@@ -28,14 +28,14 @@ final class AppCoordinator: ObservableObject {
             }
             .store(in: &cancellables)
     }
-    
+
     private func handleAuthChange(userSession: FirebaseAuth.User?) {
         if userSession == nil {
             let coordinator = AuthCoordinator()
-            self.appState = .authFlow(coordinator)
+            appState = .authFlow(coordinator)
         } else {
             let coordinator = MainCoordinator()
-            self.appState = .mainFlow(coordinator)
+            appState = .mainFlow(coordinator)
         }
     }
 }
