@@ -19,7 +19,7 @@ class AuthService: AuthServiceProtocol {
                 guard let user = firebaseUser else {
                     return nil
                 }
-                
+
                 return UserSession(uid: user.uid)
             }
             .eraseToAnyPublisher()
