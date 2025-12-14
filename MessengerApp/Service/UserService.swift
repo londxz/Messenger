@@ -13,7 +13,7 @@ class UserService {
     @Published var currentUser: UserModel?
 
     func fetchCurrentUser() async throws {
-        guard let uid = AuthService.shared.userSession?.uid else {
+        guard let uid = AuthService.shared.firebaseUser?.uid else {
             print("User isn't signed in")
             return
         }

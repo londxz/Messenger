@@ -9,5 +9,5 @@ import Combine
 import FirebaseAuth
 
 protocol AuthServiceProtocol {
-    var userSessionPublisher: AnyPublisher<FirebaseAuth.User?, Never> { get }
+    var userSessionPublisher: AnyPublisher<UserSession?, Never> { get }
 }
