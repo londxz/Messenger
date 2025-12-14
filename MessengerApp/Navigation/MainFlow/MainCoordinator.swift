@@ -54,7 +54,7 @@ final class MainCoordinator: BaseCoordinator<MainRoute> {
 
     // MARK: - Make ViewModels
 
-    private func makeInboxViewModel() -> InboxViewModel {
+    func makeInboxViewModel() -> InboxViewModel {
         let viewModel = InboxViewModel()
 
         viewModel.onShowProfileTap = { [weak self] userModel in
@@ -72,7 +72,7 @@ final class MainCoordinator: BaseCoordinator<MainRoute> {
         return viewModel
     }
 
-    private func makeNewMessageViewModel() -> NewMessageViewModel {
+    func makeNewMessageViewModel() -> NewMessageViewModel {
         let viewModel = NewMessageViewModel()
 
         viewModel.onGoBackTap = { [weak self] in
