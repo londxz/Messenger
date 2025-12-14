@@ -55,6 +55,7 @@
 		3CE0F8E42EEEBD5000C30800 /* MainCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE0F8E32EEEBD5000C30800 /* MainCoordinatorTests.swift */; };
 		3CE0F8E72EEED16200C30800 /* AuthCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE0F8E62EEED16200C30800 /* AuthCoordinatorTests.swift */; };
 		3CE0F8EA2EEEDEEE00C30800 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE0F8E92EEEDEE900C30800 /* UserSession.swift */; };
+		3CE0F8ED2EEEE21600C30800 /* AppCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE0F8EC2EEEE21600C30800 /* AppCoordinatorTests.swift */; };
 		3CE989002EE6EF8A0058FA0E /* ActiveUsersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE988FF2EE6EF820058FA0E /* ActiveUsersViewModel.swift */; };
 		3CEAEDB82ED1DFC9001F46D0 /* NewMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEAEDB72ED1DFC9001F46D0 /* NewMessageView.swift */; };
 		3CEAEDBD2ED2408F001F46D0 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEAEDBC2ED2408F001F46D0 /* ProfileView.swift */; };
@@ -125,6 +126,7 @@
 		3CE0F8E32EEEBD5000C30800 /* MainCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinatorTests.swift; sourceTree = "<group>"; };
 		3CE0F8E62EEED16200C30800 /* AuthCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinatorTests.swift; sourceTree = "<group>"; };
 		3CE0F8E92EEEDEE900C30800 /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
+		3CE0F8EC2EEEE21600C30800 /* AppCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorTests.swift; sourceTree = "<group>"; };
 		3CE988FF2EE6EF820058FA0E /* ActiveUsersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveUsersViewModel.swift; sourceTree = "<group>"; };
 		3CEAEDB72ED1DFC9001F46D0 /* NewMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageView.swift; sourceTree = "<group>"; };
 		3CEAEDBC2ED2408F001F46D0 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -495,6 +497,7 @@
 		3CE0F8E12EEEBD2600C30800 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				3CE0F8EB2EEEE20300C30800 /* AppFlow */,
 				3CE0F8E52EEED14A00C30800 /* AuthFlow */,
 				3CE0F8E22EEEBD3100C30800 /* MainFlow */,
 			);
@@ -523,6 +526,14 @@
 				3CE0F8E92EEEDEE900C30800 /* UserSession.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		3CE0F8EB2EEEE20300C30800 /* AppFlow */ = {
+			isa = PBXGroup;
+			children = (
+				3CE0F8EC2EEEE21600C30800 /* AppCoordinatorTests.swift */,
+			);
+			path = AppFlow;
 			sourceTree = "<group>";
 		};
 		3CE989012EE6EF900058FA0E /* View */ = {
@@ -768,6 +779,7 @@
 				3C2F0A0B2EC87E4B0064FEA4 /* LoginViewSnapshotTests.swift in Sources */,
 				3CE0F8E72EEED16200C30800 /* AuthCoordinatorTests.swift in Sources */,
 				3C2F09FA2EC860D60064FEA4 /* MessengerAppTests.swift in Sources */,
+				3CE0F8ED2EEEE21600C30800 /* AppCoordinatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
