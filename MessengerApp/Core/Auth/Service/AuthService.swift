@@ -5,24 +5,36 @@
 //  Created by Родион Холодов on 01.12.2025.
 //
 
+import Combine
 import FirebaseAuth
 import FirebaseFirestore
-import Foundation
 
-class AuthService {
+class AuthService: AuthServiceProtocol {
     static let shared = AuthService()
-    @Published var userSession: FirebaseAuth.User?
+    @Published var firebaseUser: FirebaseAuth.User?
+
+    var userSessionPublisher: AnyPublisher<UserSession?, Never> {
+        $firebaseUser
+            .map { firebaseUser in
+                guard let user = firebaseUser else {
+                    return nil
+                }
+
+                return UserSession(uid: user.uid)
+            }
+            .eraseToAnyPublisher()
+    }
 
     init() {
-        userSession = Auth.auth().currentUser
+        firebaseUser = Auth.auth().currentUser
         fetchCurrentUser()
-        print("user session id: \(userSession?.uid ?? "nil")")
+        print("user session id: \(firebaseUser?.uid ?? "nil")")
     }
 
     func loginUser(email: String, password: String) async throws {
         do {
             let result = try await Auth.auth().signIn(withEmail: email, password: password)
-            userSession = result.user
+            firebaseUser = result.user
             fetchCurrentUser()
             print("SUCCES in loginUser: \(result.user.uid)")
         } catch {
@@ -33,7 +45,7 @@ class AuthService {
     func createUser(email: String, fullname: String, password: String) async throws {
         do {
             let result = try await Auth.auth().createUser(withEmail: email, password: password)
-            userSession = result.user
+            firebaseUser = result.user
             try await uploadUserData(email: email, fullname: fullname)
             fetchCurrentUser()
             print("SUCCES in createUser: \(result.user.uid)")
@@ -64,7 +76,7 @@ class AuthService {
         let user = UserModel(fullname: fullname, email: email)
 
         do {
-            try FirebaseConstants.UsersCollection.document(userSession?.uid ?? "").setData(from: user)
+            try FirebaseConstants.UsersCollection.document(firebaseUser?.uid ?? "").setData(from: user)
             print("SUCCESS in uploadUserData")
         } catch {
             print("ERROR in uploadUserData: \(error.localizedDescription)")
@@ -76,7 +88,7 @@ class AuthService {
     }
 
     private func resetUser() {
-        userSession = nil
+        firebaseUser = nil
         UserService.shared.currentUser = nil
     }
 }

@@ -8,33 +8,34 @@
 import Combine
 import FirebaseAuth
 
+@MainActor
 final class AppCoordinator: ObservableObject {
     @Published var appState: AppState = .loading
+    let authService: AuthServiceProtocol
 
     private var cancellables: Set<AnyCancellable> = []
 
-    init() {
+    init(authService: AuthServiceProtocol) {
+        self.authService = authService
         setSubscribers()
     }
 
-    func makeAuthCoordinator() -> AuthCoordinator {
-        AuthCoordinator()
-    }
-
-    func makeMainCoordinator() -> MainCoordinator {
-        MainCoordinator()
-    }
-
     private func setSubscribers() {
-        AuthService.shared.$userSession
+        authService.userSessionPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] userSession in
-                if userSession == nil {
-                    self?.appState = .authFlow
-                } else {
-                    self?.appState = .mainFlow
-                }
+                self?.handleAuthChange(userSession: userSession)
             }
             .store(in: &cancellables)
+    }
+
+    private func handleAuthChange(userSession: UserSession?) {
+        if userSession == nil {
+            let coordinator = AuthCoordinator()
+            appState = .authFlow(coordinator)
+        } else {
+            let coordinator = MainCoordinator()
+            appState = .mainFlow(coordinator)
+        }
     }
 }
